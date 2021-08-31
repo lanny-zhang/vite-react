@@ -18,7 +18,7 @@ interface IResponse {
   img?: object;
 }
 
-export const request = ({ url, params, query, header, method = 'POST' }: IRequest): Promise<IResponse> => {
+export const request = (url: string, { params, query, header, method = 'POST' }: IRequest): Promise<IResponse> => {
   return new Promise((resolve, reject) => {
     axios(query ? `${url}/?${qs.stringify(query)}` : url, {
       data: params,

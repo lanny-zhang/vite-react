@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { renderRoutes } from 'react-router-config';
+import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 
-const Home: React.FC = (props) => {
+const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
+  const { route } = props;
   const [theme, setTheme] = useState('light');
 
   function handleSwitchTheme() {
@@ -14,11 +15,11 @@ const Home: React.FC = (props) => {
   }
 
   return (
-    <div data-theme={theme} className="homeLayout">
+    <div data-theme={theme} className="baseLayout">
       <Button onClick={handleSwitchTheme}>switch theme</Button>
-      {renderRoutes(props.route.routes, { someProp: 'these extra props are optional' })}
+      {renderRoutes(route?.routes, { someProp: 'these extra props are optional' })}
     </div>
   );
 };
 
-export default Home;
+export default BaseLayout;

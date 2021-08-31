@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import vitePluginImp from 'vite-plugin-imp';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/base/',
   plugins: [
     reactRefresh(),
     vitePluginImp({
@@ -18,7 +20,7 @@ export default defineConfig({
     }),
   ],
   alias: {
-    '@': '/src',
+    '@': resolve(__dirname, 'src'),
   },
   css: {
     preprocessorOptions: {
@@ -29,5 +31,19 @@ export default defineConfig({
         additionalData: "@import '@/styles/base.less';",
       },
     },
+    // postcss: {
+    //   plugins: [require('autoprefixer')],
+    // },
   },
+  // server: {
+  //   cors: true, // 允许跨域
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://www.baidu.com/',
+  //       changeOrigin: true,
+  //       secure: false,
+  //       rewrite: (path) => path.replace('/api/', '/'),
+  //     },
+  //   },
+  // },
 });
