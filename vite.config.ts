@@ -3,9 +3,7 @@ import { resolve } from 'path';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import vitePluginImp from 'vite-plugin-imp';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  // base: '/base/',
   plugins: [
     reactRefresh(),
     vitePluginImp({
@@ -31,9 +29,6 @@ export default defineConfig({
         additionalData: "@import '@/styles/base.less';",
       },
     },
-    // postcss: {
-    //   plugins: [require('autoprefixer')],
-    // },
   },
   // server: {
   //   cors: true, // 允许跨域

@@ -16,9 +16,10 @@ const Layouts: React.FC<RouteConfigComponentProps> = (props) => {
   }
 
   const layouts = useCallback(() => {
-    if (location.pathname === '/login') {
-      return <div>sdfsdf</div>;
-    }
+    // 这里可以进行基础布局的切换
+    // if (location.pathname === '/login') {
+    //   return <LoginLayout {...props} />;
+    // }
     return <BaseLayout {...props} />;
   }, [location, theme]);
 
