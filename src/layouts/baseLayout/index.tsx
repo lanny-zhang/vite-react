@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'antd';
-import { Redirect } from 'react-router-dom';
-
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import styles from './index.module.less';
 
 const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
   const { route, history } = props;
@@ -25,7 +24,7 @@ const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
   }
 
   return (
-    <div data-theme={theme} className="baseLayout">
+    <div data-theme={theme} className={styles['base-layout-wrap']}>
       <header>
         <Button onClick={handleSwitchTheme}>switch theme</Button>
       </header>

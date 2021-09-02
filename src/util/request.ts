@@ -2,7 +2,6 @@ import qs from 'qs';
 import axios from 'axios';
 
 interface IRequest {
-  url: string;
   params?: SVGForeignObjectElement;
   query?: object;
   header?: object;

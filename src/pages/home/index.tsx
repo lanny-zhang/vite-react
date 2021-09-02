@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { testRequest } from './services/index';
-import './index.less';
+import styles from './index.module.less';
 
 const Home: React.FC = () => {
   let history: any;
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="home">
+    <div className={styles.home}>
       Hello World
       <br />
       <Button type="primary" onClick={goPage}>
