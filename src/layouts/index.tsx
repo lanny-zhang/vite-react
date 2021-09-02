@@ -1,19 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import BaseLayout from './baseLayout';
-import { Button } from 'antd';
+import { ctx } from '@/context';
 import { RouteConfigComponentProps } from 'react-router-config';
 
 const Layouts: React.FC<RouteConfigComponentProps> = (props) => {
   const { location } = props;
-  const [theme, setTheme] = useState('light');
-
-  function handleSwitchTheme() {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  }
+  const { theme } = useContext(ctx);
 
   const layouts = useCallback(() => {
     // 这里可以进行基础布局的切换
@@ -21,7 +13,7 @@ const Layouts: React.FC<RouteConfigComponentProps> = (props) => {
     //   return <LoginLayout {...props} />;
     // }
     return <BaseLayout {...props} />;
-  }, [location, theme]);
+  }, [location]);
 
   return <div data-theme={theme}>{layouts()}</div>;
 };

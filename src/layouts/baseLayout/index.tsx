@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button } from 'antd';
+import { ctx } from '@/context';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import styles from './index.module.less';
 
 const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
   const { route, history } = props;
-  const [theme, setTheme] = useState('light');
+  const { setTheme, theme } = useContext(ctx);
 
   useEffect(() => {
     // 这里可以进行登录拦截
