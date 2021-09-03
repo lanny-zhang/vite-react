@@ -8,6 +8,7 @@ const HomeRoute: RouteConfig[] = [
     path: '/home',
     component: React.lazy(() => import('../../pages/home/index')),
     exact: true,
+    requiresAuth: true,
   },
 ];
 

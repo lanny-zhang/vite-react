@@ -7,6 +7,7 @@ interface Injected {
   setTheme: Dispatch<themeType>;
   userInfo: any;
   setUserInfo: Dispatch<any>;
+  isLogin: boolean
 }
 
 export const ctx = createContext<Injected>({
@@ -14,6 +15,7 @@ export const ctx = createContext<Injected>({
   setTheme: () => false,
   userInfo: {},
   setUserInfo: () => false,
+  isLogin: false
 });
 
 interface Props {
@@ -23,11 +25,14 @@ interface Props {
 export function Provider({ children }: Props) {
   const [theme, setTheme] = useState<themeType>('light');
   const [userInfo, setUserInfo] = useState({});
+  const [isLogin, setIsLogin] = useState<boolean>(false)
 
   const value = useMemo(() => {
     return {
       theme,
       userInfo,
+      isLogin,
+      setIsLogin,
       setUserInfo,
       setTheme,
     };

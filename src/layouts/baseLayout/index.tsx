@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Button } from 'antd';
 import { ctx } from '@/context';
-import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import { RouteConfigComponentProps } from 'react-router-config';
+import { renderRoutes } from '@/router';
 import styles from './index.module.less';
 
 const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
@@ -29,7 +30,7 @@ const BaseLayout: React.FC<RouteConfigComponentProps> = (props) => {
       <header>
         <Button onClick={handleSwitchTheme}>switch theme</Button>
       </header>
-      {renderRoutes(route?.routes, { someProp: 'these extra props are optional' })}
+      {renderRoutes({ routes: route?.routes, extraProps: { someProp: 'these extra props are optional' } })}
       <footer>footer</footer>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { RouteConfig } from 'react-router-config';
+import { Redirect } from 'react-router-dom';
+import renderRoutes from './RenderRoutes';
 import HomeRoute from './route/home';
 import LoginRoute from './route/login';
 
@@ -26,4 +27,5 @@ const Routers: RouteConfig[] = [
   },
 ];
 
+export { renderRoutes };
 export default Routers;
