@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { RouteConfig } from 'react-router-config';
 
 const HomeRoute: RouteConfig[] = [

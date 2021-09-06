@@ -1,4 +1,4 @@
-import React, { createContext, useState, Dispatch, ReactNode, useMemo } from 'react';
+import React, { createContext, useState, Dispatch, ReactNode, useMemo, useEffect } from 'react';
 
 type themeType = 'light' | 'dark';
 
@@ -7,7 +7,7 @@ interface Injected {
   setTheme: Dispatch<themeType>;
   userInfo: any;
   setUserInfo: Dispatch<any>;
-  isLogin: boolean
+  isLogin: boolean;
 }
 
 export const ctx = createContext<Injected>({
@@ -15,7 +15,7 @@ export const ctx = createContext<Injected>({
   setTheme: () => false,
   userInfo: {},
   setUserInfo: () => false,
-  isLogin: false
+  isLogin: false,
 });
 
 interface Props {
@@ -25,7 +25,14 @@ interface Props {
 export function Provider({ children }: Props) {
   const [theme, setTheme] = useState<themeType>('light');
   const [userInfo, setUserInfo] = useState({});
-  const [isLogin, setIsLogin] = useState<boolean>(false)
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+
+  // useEffect(() => {
+  //   //可以异步进行登录状态的修改，没有权限的界面会跳转到登录页面
+  //   setTimeout(() => {
+  //     setIsLogin(() => false);
+  //   }, 3000);
+  // }, []);
 
   const value = useMemo(() => {
     return {
@@ -36,7 +43,7 @@ export function Provider({ children }: Props) {
       setUserInfo,
       setTheme,
     };
-  }, [theme]);
+  }, [theme, isLogin, userInfo]);
 
   return <ctx.Provider value={value}>{children}</ctx.Provider>;
 }

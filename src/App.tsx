@@ -4,7 +4,7 @@ import ErrorBoundary from './ErrorBoundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from '@/context';
 import { Suspense } from 'react';
-import routes, { renderRoutes } from './router';
+import routes, { RenderRoutes } from './router';
 import './styles/global.less';
 
 ReactDOM.render(
@@ -14,7 +14,9 @@ ReactDOM.render(
       <Suspense fallback={<div>loading...</div>}>
         <Router>
           {/* 主题切换、用户信息等使用context存储 */}
-          <Provider>{renderRoutes({ routes })}</Provider>
+          <Provider>
+            <RenderRoutes routes={routes} />
+          </Provider>
         </Router>
       </Suspense>
     </ErrorBoundary>
