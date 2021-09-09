@@ -5,7 +5,12 @@ import RenderRoutes from './RenderRoutes';
 import HomeRoute from './route/home';
 import LoginRoute from './route/login';
 
-const Routers: RouteConfig[] = [
+export interface ExtendRouteConfig extends RouteConfig {
+  requiresAuth?: boolean;
+  routes?: ExtendRouteConfig[] | undefined;
+}
+
+const Routers: ExtendRouteConfig[] = [
   {
     path: '/',
     component: React.lazy(() => import('../layouts/index')),

@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   }, []);
 
   function goPage(): void {
-    history.push('/example');
+    history.push('/login');
   }
 
   return (

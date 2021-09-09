@@ -1,12 +1,13 @@
 import React from 'react';
-import { RouteConfig } from 'react-router-config';
+import { ExtendRouteConfig } from '../index';
 
-const HomeRoute: RouteConfig[] = [
+const HomeRoute: ExtendRouteConfig[] = [
   {
     name: 'home',
     path: '/home',
     component: React.lazy(() => import('../../pages/home/index')),
     exact: true,
+    //是否需要鉴权
     requiresAuth: true,
   },
 ];
