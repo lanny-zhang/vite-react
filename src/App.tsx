@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import ErrorBoundary from './ErrorBoundary';
-import { BrowserRouter as Router } from 'react-router-dom';
+// history路由模式
+// import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from '@/context';
-import { Suspense } from 'react';
 import routes, { RenderRoutes } from './router';
 import './styles/global.less';
 

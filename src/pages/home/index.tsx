@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'antd';
 import { testRequest } from './services/index';
 import styles from './index.module.less';
 
 const Home: React.FC = () => {
-  let history: any;
-  history = useHistory();
+  const history: any = useHistory();
 
   useEffect(() => {
     testRequest();
