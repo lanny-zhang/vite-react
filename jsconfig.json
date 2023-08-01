@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [
+        "./*"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
+      "@graphql/*": [
+        "src/graphql/*"
+      ],
+      "@localState/*": [
+        "src/localState/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@translations/*": [
+        "src/translations/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
+    },
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
