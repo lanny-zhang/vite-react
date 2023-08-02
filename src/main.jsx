@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from '@/context'
 import ErrorBoundary from './ErrorBoundary'
+import ThemeProvider from './styles/themeProvider'
 import Routers from './router'
 import './styles/global.less'
 
@@ -18,7 +19,9 @@ root.render(
         <Router>
           {/* 主题切换、用户信息等使用context存储 */}
           <Provider>
-            <Routers />
+            <ThemeProvider>
+              <Routers />
+            </ThemeProvider>
           </Provider>
         </Router>
       </Suspense>
