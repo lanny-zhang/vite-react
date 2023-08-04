@@ -1,6 +1,4 @@
-import React, {
-  createContext, useState, Dispatch, ReactNode, useMemo,
-} from 'react'
+import React, { createContext, useState, useMemo } from 'react'
 
 export const ctx = createContext({
   theme: 'light',
@@ -14,13 +12,6 @@ export function Provider({ children }) {
   const [theme, setTheme] = useState('light')
   const [userInfo, setUserInfo] = useState({})
   const [isLogin, setIsLogin] = useState(false)
-
-  // useEffect(() => {
-  //   //可以异步进行登录状态的修改，没有权限的界面会跳转到登录页面
-  //   setTimeout(() => {
-  //     setIsLogin(() => false);
-  //   }, 3000);
-  // }, []);
 
   const value = useMemo(() => {
     return {

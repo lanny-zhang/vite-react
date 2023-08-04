@@ -12,7 +12,7 @@ const Home = () => {
   }, [])
 
   function goPage() {
-    navigate('/login')
+    navigate('/pageOne')
   }
 
   return (
