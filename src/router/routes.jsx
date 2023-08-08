@@ -1,8 +1,9 @@
 import React from 'react'
 import Home from '../pages/Home'
 
-const PageOne = React.lazy(() => import('@pages/PageOne'))
-const PageTwo = React.lazy(() => import('@pages/PageTwo'))
+const Form = React.lazy(() => import('@@/src/pages/Form'))
+const Table = React.lazy(() => import('@@/src/pages/Table'))
+const CalenderExample = React.lazy(() => import('@@/src/pages/CalenderExample'))
 
 const routes = [
   {
@@ -11,14 +12,19 @@ const routes = [
     element: <Home />,
   },
   {
-    path: '/pageOne',
-    element: <PageOne />,
-    title: 'one',
+    path: '/form',
+    element: <Form />,
+    title: '表单',
   },
   {
-    path: '/pageTwo',
-    element: <PageTwo />,
-    title: 'two',
+    path: '/table',
+    element: <Table />,
+    title: '表格',
+  },
+  {
+    path: '/calender',
+    element: <CalenderExample />,
+    title: '日历',
   },
 ]
 

@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd'
 import { ctx } from '@/context'
 import styles from './index.module.less'
 
-const items1 = ['/pageOne', '/pageTwo'].map((key, index) => ({
+const items1 = ['/form', '/table', '/calender'].map((key, index) => ({
   key,
   name: key,
   label: `nav ${index + 1}`,
