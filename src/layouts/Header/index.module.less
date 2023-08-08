@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 24px;
+  line-height: 42px;
+  .header-logo {
+    width: 200px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  :global {
+    .ant-menu-item-selected {
+      background-color: initial;
+      color: #1677ff;
+      &:hover {
+        background-color: initial;
+      }
+    }
+  }
+}

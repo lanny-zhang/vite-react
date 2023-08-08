@@ -1,16 +1,16 @@
-import React, { useState, cloneElement } from 'react'
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
+import React, { useState, cloneElement, useEffect } from 'react'
+import {
+  LaptopOutlined,
+  NotificationOutlined,
+  UserOutlined,
+  SkinOutlined,
+} from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import Header from '../Header'
 import styles from './index.module.less'
 
-const { Header, Content, Sider } = Layout
-
-const items1 = ['/pageOne', '/pageTwo'].map((key) => ({
-  key,
-  name: key,
-  label: `nav ${key}`,
-}))
+const { Content, Sider } = Layout
 
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1)
@@ -34,30 +34,36 @@ const SiderLayout = ({ children }) => {
     token: { colorBgContainer },
   } = theme.useToken()
   const navigate = useNavigate()
+  const location = useLocation()
   const [activeTab, setActiveTab] = useState([])
   const [tabList, setTabList] = useState([])
 
+  const listenLocationChangeTabState = () => {
+    if (location.pathname === '/') {
+      setActiveTab(null)
+      setTabList([])
+      return
+    }
+    setActiveTab(location.pathname)
+    const isExistTab = tabList.some((i) => i === location.pathname)
+    if (!isExistTab) {
+      setTabList([...tabList, location.pathname])
+    }
+  }
+
+  useEffect(() => {
+    listenLocationChangeTabState()
+  }, [location])
+
   const handleTopMenuChange = ({ key, domEvent }) => {
     domEvent.stopPropagation()
-    setActiveTab(key)
-    setTabList([...tabList, key])
     navigate(key)
   }
 
   return (
     <Layout className={styles.siderlayout}>
-      <Header className={styles['siderlayout-header']}>
-        <div className={styles['header-logo']} />
-        <Menu
-          style={{ width: '100%' }}
-          onClick={handleTopMenuChange}
-          theme='dark'
-          mode='horizontal'
-          defaultSelectedKeys={['pageOne']}
-          items={items1}
-        />
-      </Header>
-      <Layout>
+      <Header onChange={handleTopMenuChange} />
+      <Layout className={styles['siderlayout-center']}>
         <Sider width={200} style={{ background: colorBgContainer }}>
           <Menu
             mode='inline'

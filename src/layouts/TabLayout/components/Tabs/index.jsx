@@ -23,13 +23,15 @@ const Tabs = ({ value, onChange, children }) => {
           )
         })}
       </div>
-      <div className={styles['tabs-content']}>
-        {React.Children.map(children, (ele) => {
-          const { value: childValue } = ele.props
-          return React.cloneElement(ele, {
-            className: value === childValue ? '' : styles['tab-hidden'],
-          })
-        })}
+      <div className={styles['tabs-content-wrap']}>
+        <div className={styles['tabs-content']}>
+          {React.Children.map(children, (ele) => {
+            const { value: childValue } = ele.props
+            return React.cloneElement(ele, {
+              className: value === childValue ? '' : styles['tab-hidden'],
+            })
+          })}
+        </div>
       </div>
     </div>
   )

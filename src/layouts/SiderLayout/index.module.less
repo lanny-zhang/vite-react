@@ -1,29 +1,15 @@
 .siderlayout {
-  min-height: 100%;
-  .siderlayout-header {
-    display: flex;
-    align-items: center;
-    height: 42px;
-    line-height: 42px;
-    .header-logo {
-      width: 200px;
-    }
-    :global {
-      .ant-menu-item-selected {
-        background-color: inherit;
-        color: #1677ff;
-        &:hover {
-          background-color: inherit;
-        }
+  height: 100%;
+  .siderlayout-center {
+    height: calc(100vh - 42px);
+    overflow: auto;
+    .siderlayout-content-wrap {
+      padding: 18px;
+      .siderlayout-content {
+        padding: 24;
+        margin: 0;
+        min-height: 280;
       }
-    }
-  }
-  .siderlayout-content-wrap {
-    padding: 18px;
-    .siderlayout-content {
-      padding: 24;
-      margin: 0;
-      min-height: 280;
     }
   }
 }
