@@ -1,7 +1,7 @@
 import React, {
   useState, cloneElement, useEffect, useContext,
 } from 'react'
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { ctx } from '@/context'
@@ -11,22 +11,27 @@ import styles from './index.module.less'
 const { Content, Sider } = Layout
 const { useToken } = antdTheme
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1)
-
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      }
-    }),
-  }
-})
+const menus = [
+  {
+    key: 'sub1',
+    icon: <UserOutlined />,
+    label: 'subnav 1',
+    children: [
+      {
+        key: '/form',
+        label: '表单',
+      },
+      {
+        key: '/table',
+        label: '表格',
+      },
+      {
+        key: '/calender',
+        label: '日历',
+      },
+    ],
+  },
+]
 
 const SiderLayout = ({ children }) => {
   const { theme } = useContext(ctx)
@@ -56,22 +61,23 @@ const SiderLayout = ({ children }) => {
     listenLocationChangeTabState()
   }, [location])
 
-  const handleTopMenuChange = ({ key, domEvent }) => {
+  const handleMenuChange = ({ key, domEvent }) => {
     domEvent.stopPropagation()
     navigate(key)
   }
 
   return (
     <Layout data-theme={theme} className={styles.siderlayout}>
-      <Header selectedKeys={activeTab} onChange={handleTopMenuChange} />
+      <Header />
       <Layout className={styles['siderlayout-center']}>
         <Sider width={200} style={{ background: colorBgContainer }}>
           <Menu
             mode='inline'
-            defaultSelectedKeys={['1']}
+            onClick={handleMenuChange}
+            selectedKeys={[activeTab]}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
-            items={items2}
+            items={menus}
           />
         </Sider>
         {children ? (

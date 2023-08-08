@@ -4,13 +4,13 @@ import { Layout, Menu } from 'antd'
 import { ctx } from '@/context'
 import styles from './index.module.less'
 
-const items1 = ['/form', '/table', '/calender'].map((key, index) => ({
+const items1 = ['nav'].map((key, index) => ({
   key,
   name: key,
   label: `nav ${index + 1}`,
 }))
 
-const Header = ({ onChange, selectedKeys }) => {
+const Header = ({ onChange }) => {
   const { setTheme, theme } = useContext(ctx)
 
   function handleSwitchTheme() {
@@ -28,7 +28,7 @@ const Header = ({ onChange, selectedKeys }) => {
         onClick={onChange}
         theme='dark'
         mode='horizontal'
-        selectedKeys={[selectedKeys]}
+        selectedKeys={['nav']}
         items={items1}
       />
       <div className={styles['header-right']}>
