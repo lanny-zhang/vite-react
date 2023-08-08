@@ -329,9 +329,7 @@ const PageOne = () => {
         ]}
         {...tailFormItemLayout}
       >
-        <Checkbox>
-          I have read the agreement
-        </Checkbox>
+        <Checkbox>I have read the agreement</Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type='primary' htmlType='submit'>

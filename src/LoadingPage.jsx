@@ -4,8 +4,9 @@ import { Space, Spin } from 'antd'
 const LoadingPage = () => (
   <div
     style={{
-      height: '100%',
+      minHeight: '800px',
       width: '100%',
+      background: '#fff',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
