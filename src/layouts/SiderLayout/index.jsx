@@ -1,16 +1,15 @@
-import React, { useState, cloneElement, useEffect } from 'react'
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-  SkinOutlined,
-} from '@ant-design/icons'
-import { Layout, Menu, theme } from 'antd'
+import React, {
+  useState, cloneElement, useEffect, useContext,
+} from 'react'
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
+import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { ctx } from '@/context'
 import Header from '../Header'
 import styles from './index.module.less'
 
 const { Content, Sider } = Layout
+const { useToken } = antdTheme
 
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1)
@@ -30,9 +29,11 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 })
 
 const SiderLayout = ({ children }) => {
+  const { theme } = useContext(ctx)
   const {
     token: { colorBgContainer },
-  } = theme.useToken()
+  } = useToken()
+
   const navigate = useNavigate()
   const location = useLocation()
   const [activeTab, setActiveTab] = useState([])
@@ -61,8 +62,8 @@ const SiderLayout = ({ children }) => {
   }
 
   return (
-    <Layout className={styles.siderlayout}>
-      <Header onChange={handleTopMenuChange} />
+    <Layout data-theme={theme} className={styles.siderlayout}>
+      <Header selectedKeys={activeTab} onChange={handleTopMenuChange} />
       <Layout className={styles['siderlayout-center']}>
         <Sider width={200} style={{ background: colorBgContainer }}>
           <Menu

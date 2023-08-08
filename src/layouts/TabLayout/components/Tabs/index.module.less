@@ -11,14 +11,14 @@
       line-height: 40px;
       height: 100%;
       padding: 0 8px;
-      color: #9da1b8;
-      background-color: #eaecef;
+      color: @main-text-color;
+      background-color: @tab-bg-color;
       transition: all 0.3s;
     }
     .tab-active {
-      background-color: #fff;
+      background-color: @tab-active-bg-color;
       transition: all 0.3s;
-      color: #272934;
+      color: @main-text-color;
       border-bottom: 3px solid #6595d8;
     }
   }
@@ -28,8 +28,9 @@
       width: 100%;
       max-height: calc(100% - 72px);
       overflow: auto;
-      background-color: #fff;
+      background-color: @background-color;
       padding: 16px;
+      color: @main-text-color;
     }
   }
   .tab-hidden {

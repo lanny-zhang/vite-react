@@ -1,24 +1,15 @@
-import React, { useContext, useEffect } from 'react'
-import { Button } from 'antd'
+import React, { useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import { ctx } from '@/context'
 import styles from './index.module.less'
 
 const BaseLayout = () => {
-  const { setTheme, theme } = useContext(ctx)
-
-  function handleSwitchTheme() {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }
+  const { theme } = useContext(ctx)
 
   return (
     <div data-theme={theme} className={styles['base-layout-wrap']}>
       <header>
-        <Button onClick={handleSwitchTheme}>switch theme</Button>
+        <header>header</header>
       </header>
       <div>
         <Outlet />

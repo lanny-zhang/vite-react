@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SkinOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
+import { ctx } from '@/context'
 import styles from './index.module.less'
 
-const items1 = ['/pageOne', '/pageTwo'].map((key) => ({
+const items1 = ['/pageOne', '/pageTwo'].map((key, index) => ({
   key,
   name: key,
-  label: `nav ${key}`,
+  label: `nav ${index + 1}`,
 }))
 
-const Header = ({ onChange }) => {
+const Header = ({ onChange, selectedKeys }) => {
+  const { setTheme, theme } = useContext(ctx)
+
+  function handleSwitchTheme() {
+    if (theme === 'light') {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
+  }
   return (
     <Layout.Header className={styles.header}>
       <div className={styles['header-logo']} />
@@ -18,11 +28,11 @@ const Header = ({ onChange }) => {
         onClick={onChange}
         theme='dark'
         mode='horizontal'
-        defaultSelectedKeys={['pageOne']}
+        selectedKeys={[selectedKeys]}
         items={items1}
       />
       <div className={styles['header-right']}>
-        <SkinOutlined style={{ color: '#fff', fontSize: 20 }} />
+        <SkinOutlined onClick={handleSwitchTheme} style={{ color: '#999', fontSize: 20 }} />
       </div>
     </Layout.Header>
   )

@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 5001,
+      port: 5002,
       proxy: {
         '/api': env.VITE_PROXY_API_URL,
         '/subscriptions': {

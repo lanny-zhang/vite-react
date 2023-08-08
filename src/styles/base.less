@@ -1,14 +1,20 @@
 //这里进行主题颜色的配置和抛出，vite会在各个less文件中引入该文件
 
 [data-theme='light'] {
-  --bg-color: #f5f5f5;
-  --main-text-color: #000;
+  --bg-color: #fff;
+  --main-text-color: rgba(0, 0, 0, 0.88);
+  --tab-active-bg-color: #fff;
+  --tab-bg-color: #eaecef;
 }
 
 [data-theme='dark'] {
-  --bg-color: #282c34;
-  --main-text-color: #abb2bf;
+  --bg-color: #141414;
+  --main-text-color: rgba(255, 255, 255, 0.85);
+  --tab-active-bg-color: #111a2c;
+  --tab-bg-color: #141414;
 }
 
 @background-color: var(--bg-color);
 @main-text-color: var(--main-text-color);
+@tab-active-bg-color: var(--tab-active-bg-color);
+@tab-bg-color: var(--tab-bg-color);
