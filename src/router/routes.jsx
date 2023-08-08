@@ -1,6 +1,4 @@
 import React from 'react'
-// import PageOne from '../pages/PageOne'
-// import PageTwo from '../pages/PageTwo'
 import Home from '../pages/Home'
 
 const PageOne = React.lazy(() => import('@pages/PageOne'))
@@ -15,12 +13,12 @@ const routes = [
   {
     path: '/pageOne',
     element: <PageOne />,
-    title: 'hhhh',
+    title: 'one',
   },
   {
     path: '/pageTwo',
     element: <PageTwo />,
-    title: 'bbbbisExistTab',
+    title: 'two',
   },
 ]
 

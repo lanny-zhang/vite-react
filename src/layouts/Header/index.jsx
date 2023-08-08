@@ -32,7 +32,7 @@ const Header = ({ onChange, selectedKeys }) => {
         items={items1}
       />
       <div className={styles['header-right']}>
-        <SkinOutlined onClick={handleSwitchTheme} style={{ color: '#999', fontSize: 20 }} />
+        <SkinOutlined onClick={handleSwitchTheme} style={{ color: '#999', fontSize: 18 }} />
       </div>
     </Layout.Header>
   )
