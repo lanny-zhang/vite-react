@@ -5,9 +5,11 @@ import RequireAuth from './RequireAuth'
 import BaseLayout from '../layouts/BaseLayout'
 import TabLayout from '../layouts/TabLayout'
 import routes from './routes'
+import { flattenArray } from '../util/javascript'
 
 const Login = React.lazy(() => import('@@/src/pages/Login'))
 const PageError = React.lazy(() => import('./Exceptions/Error404'))
+const flattenRoutes = flattenArray(routes)
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
+    path: '/*',
     element: (
     // <RequireAuth>
       <SiderLayout>
@@ -29,7 +31,6 @@ const router = createBrowserRouter([
     // </RequireAuth>
     ),
     errorElement: <PageError />,
-    children: routes,
   },
   {
     path: '*',

@@ -5,6 +5,8 @@ import { UserOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { ctx } from '@/context'
+import { flattenArray } from '@@/src/util/javascript'
+import routes from '@@/src/router/routes'
 import Header from '../Header'
 import styles from './index.module.less'
 
@@ -45,15 +47,18 @@ const SiderLayout = ({ children }) => {
   const [tabList, setTabList] = useState([])
 
   const listenLocationChangeTabState = () => {
-    if (location.pathname === '/') {
-      setActiveTab(null)
-      setTabList([])
+    const { pathname } = location
+    if (pathname === '/') {
       return
     }
-    setActiveTab(location.pathname)
-    const isExistTab = tabList.some((i) => i === location.pathname)
-    if (!isExistTab) {
-      setTabList([...tabList, location.pathname])
+    const flattenMenu = flattenArray(menus)
+    const isBelongMenuPath = flattenMenu.some((i) => i.key === pathname)
+    if (isBelongMenuPath) {
+      setActiveTab(pathname)
+      const isExistTab = tabList.some((i) => i === pathname)
+      if (!isExistTab) {
+        setTabList([...tabList, pathname])
+      }
     }
   }
 

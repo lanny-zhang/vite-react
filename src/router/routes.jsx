@@ -1,9 +1,11 @@
 import React from 'react'
 import Home from '../pages/Home'
+import { flattenArray } from '../util/javascript'
 
-const Form = React.lazy(() => import('@@/src/pages/Form'))
-const Table = React.lazy(() => import('@@/src/pages/Table'))
-const CalenderExample = React.lazy(() => import('@@/src/pages/CalenderExample'))
+const Form = React.lazy(() => import('@pages/Form'))
+const Table = React.lazy(() => import('@pages/Table'))
+const Detail = React.lazy(() => import('@pages/Detail'))
+const CalenderExample = React.lazy(() => import('@pages/CalenderExample'))
 
 const routes = [
   {
@@ -12,20 +14,31 @@ const routes = [
     element: <Home />,
   },
   {
-    path: '/form',
+    path: 'form',
     element: <Form />,
     title: '表单',
   },
   {
-    path: '/table',
+    path: 'table',
     element: <Table />,
     title: '表格',
+    children: [
+      {
+        path: 'detail',
+        element: <Detail />,
+        title: '详情',
+      },
+    ],
   },
+
   {
-    path: '/calender',
+    path: 'calender',
     element: <CalenderExample />,
     title: '日历',
   },
 ]
 
+const flattenRoutes = flattenArray(routes)
+
 export default routes
+export { flattenRoutes }

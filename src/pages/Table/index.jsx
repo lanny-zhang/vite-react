@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { Space, Table, Tag } from 'antd'
+import { Link } from 'react-router-dom'
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <a>{text}</a>,
+    render: (text) => <Link to='/detail'>{text}</Link>,
   },
   {
     title: 'Age',
