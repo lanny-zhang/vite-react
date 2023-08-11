@@ -4,6 +4,8 @@ import React, {
 import { UserOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { isEmpty } from 'lodash'
+import classname from 'classname'
 import { ctx } from '@/context'
 import { flattenRoutes } from '@@/src/router/routes'
 import Header from '../Header'
@@ -18,10 +20,6 @@ const menus = [
     icon: <UserOutlined />,
     label: 'General',
     children: [
-      {
-        key: '/',
-        label: 'Home',
-      },
       {
         key: '/form',
         label: 'Form',
@@ -84,11 +82,23 @@ const SiderLayout = ({ children }) => {
     navigate(key)
   }
 
+  const handleDeletePage = (currentPages) => {
+    setPageList(currentPages)
+    setActivePage(currentPages[0])
+    navigate(isEmpty(currentPages) ? '/' : currentPages[0].path)
+  }
+
   return (
     <Layout data-theme={theme} className={styles.siderlayout}>
       <Header />
       <Layout className={styles['siderlayout-center']}>
-        <Sider width={200} style={{ background: colorBgContainer }}>
+        <Sider
+          className={classname({
+            [styles['sider-hide']]: activePage.hideSider,
+          })}
+          width={200}
+          style={{ background: colorBgContainer }}
+        >
           <Menu
             mode='inline'
             onClick={handleMenuChange}
@@ -102,6 +112,7 @@ const SiderLayout = ({ children }) => {
           cloneElement(children, {
             pageList,
             activePage,
+            onDeletePage: handleDeletePage,
             onChange(tab) {
               setActivePage(tab)
               navigate(tab.path)

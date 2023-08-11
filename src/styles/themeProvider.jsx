@@ -8,6 +8,10 @@ const ThemeProvider = ({ children }) => {
     <ConfigProvider
       theme={{
         algorithm: contextTheme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm,
+        token: {
+          'colorPrimary': '#5ea1ff',
+          'colorError': '#ff6669',
+        },
       }}
     >
       {children}

@@ -1,20 +1,32 @@
 .header {
   display: flex;
   align-items: center;
-  height: 42px;
+  height: 48px;
   padding: 0 24px;
-  line-height: 42px;
+  line-height: 60px;
+  background-color: @header-bg-color;
+  box-shadow: 0 .3rem .6rem 0 rgba(44, 51, 73, .1);
+  z-index: 1;
+  .header-menu {
+    height: 48px;
+    line-height: 48px;
+    background-color: @header-bg-color;
+  }
   .header-logo {
     width: 200px;
+    padding: 0 7px;
   }
   .header-right {
     display: flex;
     align-items: center;
   }
   :global {
+    .ant-menu {
+      border-bottom: none;
+    }
     .ant-menu-item-selected {
       background-color: initial !important;
-      color: #1677ff !important;
+      color: @primary-color !important;
       &:hover {
         background-color: initial;
       }

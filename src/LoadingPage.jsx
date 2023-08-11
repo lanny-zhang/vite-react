@@ -1,19 +1,27 @@
 import React from 'react'
-import { Space, Spin } from 'antd'
+import { Spin, theme as antdTheme } from 'antd'
 
-const LoadingPage = () => (
-  <div
-    style={{
-      minHeight: '800px',
-      width: '100%',
-      background: '#fff',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <Spin size='large' />
-  </div>
-)
+const { useToken } = antdTheme
+
+const LoadingPage = () => {
+  const {
+    token: { colorBgContainer },
+  } = useToken()
+
+  return (
+    <div
+      style={{
+        minHeight: '800px',
+        width: '100%',
+        background: colorBgContainer,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Spin size='large' />
+    </div>
+  )
+}
 
 export default LoadingPage

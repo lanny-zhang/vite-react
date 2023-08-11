@@ -2,11 +2,17 @@
   width: 100%;
   :global {
     .ant-tabs-tab {
-      border: none !important;
-      border-radius: 0 !important;
+      border-bottom: 1px solid @border-color !important;
+      border-radius: 4px !important;
+      padding: 4px 12px !important;
+      font-size: 12px !important;
     }
     .ant-tabs-nav {
       margin-bottom: 0;
+      padding: 6px;
+      // padding-bottom: 0;
+      background-color: @background-color;
+      border-bottom: none;
     }
     .ant-tabs-content-holder {
       margin: 16px;
@@ -22,7 +28,7 @@
   }
 }
 
-.hidenTab {
+.hideTab {
   :global {
     .ant-tabs-nav {
       display: none;

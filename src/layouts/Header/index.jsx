@@ -1,17 +1,25 @@
 import React, { useContext } from 'react'
 import { SkinOutlined } from '@ant-design/icons'
-import { Layout, Menu } from 'antd'
+import {
+  Layout, Menu, theme as antdTheme, Typography,
+} from 'antd'
+import { useNavigate } from 'react-router-dom'
 import { ctx } from '@/context'
 import styles from './index.module.less'
 
 const items1 = ['nav'].map((key, index) => ({
   key,
   name: key,
-  label: `nav ${index + 1}`,
+  label: 'Basic Components',
 }))
+const { useToken } = antdTheme
 
 const Header = ({ onChange }) => {
+  const navigate = useNavigate()
   const { setTheme, theme } = useContext(ctx)
+  const {
+    token: { colorBgContainer },
+  } = useToken()
 
   function handleSwitchTheme() {
     if (theme === 'light') {
@@ -22,10 +30,22 @@ const Header = ({ onChange }) => {
   }
   return (
     <Layout.Header className={styles.header}>
-      <div className={styles['header-logo']} />
+      {/* // <Layout.Header style={{ background: colorBgContainer }} className={styles.header}> */}
+      <div className={styles['header-logo']}>
+        <Typography.Title
+          onClick={() => {
+            navigate('/')
+          }}
+          level={5}
+          style={{ margin: 0, cursor: 'pointer' }}
+        >
+          LOGO
+        </Typography.Title>
+      </div>
       <Menu
         style={{ width: '100%' }}
         onClick={onChange}
+        className={styles['header-menu']}
         theme='dark'
         mode='horizontal'
         selectedKeys={['nav']}

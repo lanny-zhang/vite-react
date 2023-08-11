@@ -13,8 +13,8 @@ const routes = [
     index: true,
     title: 'Home',
     element: <Home />,
-    hidenTab: true,
-    hidenSider: false,
+    hideTab: true,
+    hideSider: true,
   },
   {
     path: 'form',
