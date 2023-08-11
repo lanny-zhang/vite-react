@@ -12,18 +12,13 @@ const Home = () => {
   }, [])
 
   function goPage() {
-    navigate('/pageOne')
+    navigate('/table')
   }
 
   return (
     <div className={styles.home}>
       Hello World
       <br />
-      <Card title='Default size card' extra='More' style={{ width: 300 }}>
-        <p>Card content</p>
-        <p>Card content</p>
-        <p>Card content</p>
-      </Card>
       <Button type='primary' onClick={goPage}>
         路由跳转
       </Button>
