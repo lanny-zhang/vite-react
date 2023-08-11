@@ -19,17 +19,17 @@ const routes = [
   {
     path: 'form',
     element: <Form />,
-    title: '表单',
+    title: 'Form',
   },
   {
     path: 'table',
     element: <Table />,
-    title: '表格',
+    title: 'Table',
     children: [
       {
         path: 'table/detail',
         element: <Detail />,
-        title: '详情',
+        title: 'Detail',
       },
     ],
   },
@@ -37,7 +37,7 @@ const routes = [
   {
     path: 'calender',
     element: <CalenderExample />,
-    title: '日历',
+    title: 'Calender',
   },
 ]
 

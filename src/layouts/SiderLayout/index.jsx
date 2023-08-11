@@ -16,23 +16,23 @@ const menus = [
   {
     key: 'sub1',
     icon: <UserOutlined />,
-    label: 'subnav 1',
+    label: 'General',
     children: [
       {
         key: '/',
-        label: 'home',
+        label: 'Home',
       },
       {
         key: '/form',
-        label: '表单',
+        label: 'Form',
       },
       {
         key: '/table',
-        label: '表格',
+        label: 'Table',
       },
       {
         key: '/calender',
-        label: '日历',
+        label: 'Calender',
       },
     ],
   },
