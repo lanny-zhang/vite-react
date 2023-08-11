@@ -14,7 +14,7 @@ const routes = [
     title: 'Home',
     element: <Home />,
     hidenTab: true,
-    hidenSlider: false,
+    hidenSider: false,
   },
   {
     path: 'form',
@@ -30,16 +30,6 @@ const routes = [
         path: 'table/detail',
         element: <Detail />,
         title: '详情',
-      },
-      {
-        path: 'table/instance',
-        element: <Detail />,
-        title: '实例',
-        children: [{
-          path: 'instance/list',
-          element: <Detail />,
-          title: '实例',
-        }],
       },
     ],
   },

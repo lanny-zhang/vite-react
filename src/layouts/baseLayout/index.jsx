@@ -8,13 +8,7 @@ const BaseLayout = () => {
 
   return (
     <div data-theme={theme} className={styles['base-layout-wrap']}>
-      <header>
-        <header>header</header>
-      </header>
-      <div>
-        <Outlet />
-      </div>
-      <footer>footer</footer>
+      <Outlet />
     </div>
   )
 }

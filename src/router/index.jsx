@@ -21,11 +21,11 @@ const router = createBrowserRouter([
   {
     path: '/*',
     element: (
-      // <RequireAuth>
-      <SiderLayout>
-        <TabLayout />
-      </SiderLayout>
-      // </RequireAuth>
+      <RequireAuth>
+        <SiderLayout>
+          <TabLayout />
+        </SiderLayout>
+      </RequireAuth>
     ),
     errorElement: <PageError />,
   },

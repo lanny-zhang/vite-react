@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Card } from 'antd'
+import { Button } from 'antd'
 import { testRequest } from './services'
 import styles from './index.module.less'
 
