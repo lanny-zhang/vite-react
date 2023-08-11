@@ -8,7 +8,7 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <Link to='/table/detail?id=1111'>{text}</Link>,
+    render: (text) => <Link to={`/table/detail?id=${text}`}>{text}</Link>,
   },
   {
     title: 'Age',
@@ -38,16 +38,6 @@ const columns = [
           )
         })}
       </>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size='middle'>
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
     ),
   },
 ]

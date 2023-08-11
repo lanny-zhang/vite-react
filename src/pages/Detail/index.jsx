@@ -1,7 +1,6 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons'
 import React from 'react'
 import { Avatar, List, Space } from 'antd'
-import { useParams } from 'react-router'
 
 const data = Array.from({
   length: 23,
@@ -21,10 +20,6 @@ const IconText = ({ icon, text }) => (
   </Space>
 )
 const Detail = () => {
-  const params = useParams()
-
-  console.log(params)
-
   return (
     <List
       itemLayout='vertical'
@@ -36,11 +31,6 @@ const Detail = () => {
         pageSize: 3,
       }}
       dataSource={data}
-      footer={(
-        <div>
-          <b>ant design</b> footer part
-        </div>
-      )}
       renderItem={(item) => (
         <List.Item
           key={item.title}
