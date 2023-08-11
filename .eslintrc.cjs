@@ -41,7 +41,7 @@ module.exports = {
     'no-use-before-define': 0,
     'react/display-name': 0,
     'no-restricted-syntax': 0,
-
+    'no-debugger': 'warn',
     'arrow-body-style': 'off',
     'arrow-parens': 'off',
     'consistent-return': 'off',

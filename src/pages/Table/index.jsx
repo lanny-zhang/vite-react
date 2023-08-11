@@ -8,7 +8,7 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <Link to='/detail'>{text}</Link>,
+    render: (text) => <Link to='/table/detail?id=1111'>{text}</Link>,
   },
   {
     title: 'Age',

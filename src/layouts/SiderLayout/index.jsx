@@ -5,8 +5,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { ctx } from '@/context'
-import { flattenArray } from '@@/src/util/javascript'
-import routes from '@@/src/router/routes'
+import { flattenRoutes } from '@@/src/router/routes'
 import Header from '../Header'
 import styles from './index.module.less'
 
@@ -19,6 +18,10 @@ const menus = [
     icon: <UserOutlined />,
     label: 'subnav 1',
     children: [
+      {
+        key: '/',
+        label: 'home',
+      },
       {
         key: '/form',
         label: '表单',
@@ -43,22 +46,32 @@ const SiderLayout = ({ children }) => {
 
   const navigate = useNavigate()
   const location = useLocation()
-  const [activeTab, setActiveTab] = useState([])
-  const [tabList, setTabList] = useState([])
+
+  const [activePage, setActivePage] = useState({})
+  const [pageList, setPageList] = useState([])
 
   const listenLocationChangeTabState = () => {
     const { pathname } = location
-    if (pathname === '/') {
-      return
-    }
-    const flattenMenu = flattenArray(menus)
-    const isBelongMenuPath = flattenMenu.some((i) => i.key === pathname)
-    if (isBelongMenuPath) {
-      setActiveTab(pathname)
-      const isExistTab = tabList.some((i) => i === pathname)
-      if (!isExistTab) {
-        setTabList([...tabList, pathname])
-      }
+    const currentRouteObj = flattenRoutes.find((i) => i.path === pathname) || {}
+    const { path, father } = currentRouteObj
+
+    // 使用最高一级路由的path当作唯一标识
+    const activeKey = father?.split('_')[0] || path
+
+    const activePageObj = { ...currentRouteObj, key: activeKey }
+    setActivePage(activePageObj)
+
+    const isExistTab = pageList.some((i) => i.key === activeKey)
+    if (!isExistTab) {
+      setPageList([...pageList, activePageObj])
+    } else {
+      const tab = pageList.map((t) => {
+        if (t.key === activeKey) {
+          return activePageObj
+        }
+        return t
+      })
+      setPageList(tab)
     }
   }
 
@@ -79,7 +92,7 @@ const SiderLayout = ({ children }) => {
           <Menu
             mode='inline'
             onClick={handleMenuChange}
-            selectedKeys={[activeTab]}
+            selectedKeys={[activePage?.key]}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
             items={menus}
@@ -87,11 +100,11 @@ const SiderLayout = ({ children }) => {
         </Sider>
         {children ? (
           cloneElement(children, {
-            tabList,
-            activeTab,
-            onChange(path) {
-              setActiveTab(path)
-              navigate(path)
+            pageList,
+            activePage,
+            onChange(tab) {
+              setActivePage(tab)
+              navigate(tab.path)
             },
           })
         ) : (

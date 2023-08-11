@@ -9,9 +9,12 @@ const CalenderExample = React.lazy(() => import('@pages/CalenderExample'))
 
 const routes = [
   {
-    path: '/',
+    path: '',
     index: true,
+    title: 'Home',
     element: <Home />,
+    hidenTab: true,
+    hidenSlider: false,
   },
   {
     path: 'form',
@@ -24,9 +27,19 @@ const routes = [
     title: '表格',
     children: [
       {
-        path: 'detail',
+        path: 'table/detail',
         element: <Detail />,
         title: '详情',
+      },
+      {
+        path: 'table/instance',
+        element: <Detail />,
+        title: '实例',
+        children: [{
+          path: 'instance/list',
+          element: <Detail />,
+          title: '实例',
+        }],
       },
     ],
   },
@@ -38,7 +51,9 @@ const routes = [
   },
 ]
 
-const flattenRoutes = flattenArray(routes)
+// eslint-disable-next-line import/no-mutable-exports
+let flattenRoutes = null
+if (!flattenRoutes) flattenRoutes = flattenArray(routes)
 
 export default routes
 export { flattenRoutes }
