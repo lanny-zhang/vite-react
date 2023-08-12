@@ -93,7 +93,7 @@ const SiderLayout = ({ children }) => {
       <Header />
       <Layout className={styles['siderlayout-center']}>
         <Sider
-          className={classname({
+          className={classname(styles.sider, {
             [styles['sider-hide']]: activePage.hideSider,
           })}
           width={200}
