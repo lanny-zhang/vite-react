@@ -12,7 +12,7 @@ import styles from './index.module.less'
 const TabLayout = ({
   pageList, activePage, onChange, onDeletePage,
 }) => {
-  const items = pageList.map(({ path, key }) => {
+  const items = pageList.map(({ path, key, hideTab }) => {
     // 找到当前路由的对应路由和子路由，并展开
     const route = routes.find((i) => `/${i.path}` === key)
     const flattenRoute = flattenArray([route])
@@ -21,8 +21,12 @@ const TabLayout = ({
       key,
       children: (
         <div className={styles['route-wrap']}>
-          <Breadcrumb route={route} currentPath={path} />
-          <div className={styles['route-content']}>
+          {!hideTab && path !== key && <Breadcrumb route={route} currentPath={path} />}
+          <div
+            className={classname(styles['route-content'], {
+              [styles['breadcrumn-hide']]: hideTab || path === key,
+            })}
+          >
             <Routes location={path}>
               {flattenRoute.map((item) => {
                 const { element, path: p } = item
@@ -50,7 +54,9 @@ const TabLayout = ({
   return (
     <>
       {isEmpty(pageList) ? (
-        <Outlet />
+        <div className={styles['tab-outlet']}>
+          <Outlet />
+        </div>
       ) : (
         <Tabs
           hideAdd
