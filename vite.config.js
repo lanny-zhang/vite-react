@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: './',
     experimental: {
-      renderBuiltUrl(filename, { hostId, hostType, type }) {
+      renderBuiltUrl(filename, { hostType }) {
         if (hostType === 'html') {
           const hostPath = path.join(env.VITE_PUBLIC_URL, filename)
           return hostPath.startsWith('/') ? `.${hostPath}` : hostPath
@@ -37,10 +37,6 @@ export default defineConfig(({ mode }) => {
       port: 5002,
       proxy: {
         '/api': env.VITE_PROXY_API_URL,
-        '/subscriptions': {
-          target: env.VITE_PROXY_API_URL,
-          ws: true,
-        },
       },
     },
     css: {

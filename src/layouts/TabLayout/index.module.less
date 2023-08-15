@@ -1,5 +1,15 @@
 .tablayout {
   width: 100%;
+  .route-wrap {
+    height: 100%;
+  }
+  .route-content {
+    overflow: auto;
+    height: calc(100% - 46px);
+    padding: 12px;
+    border-radius: 6px;
+    background-color: @background-color;
+  }
   :global {
     .ant-tabs-tab {
       border-bottom: 1px solid @border-color !important;
@@ -17,13 +27,17 @@
     }
     .ant-tabs-content-holder {
       margin: 16px;
+      margin-top: 0;
+      position: relative;
       .ant-tabs-content {
         width: 100%;
         height: 100%;
-        overflow: auto;
-        background-color: @background-color;
-        padding: 16px;
+        border-radius: 6px;
         color: @main-text-color;
+        .ant-tabs-tabpane {
+          height: 100%;
+          width: 100%;
+        }
       }
     }
   }

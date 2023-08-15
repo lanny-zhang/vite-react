@@ -6,6 +6,7 @@ import classname from 'classname'
 import routes from '@@/src/router/routes'
 import LoadingPage from '@@/src/LoadingPage'
 import { flattenArray } from '@@/src/util/javascript'
+import Breadcrumb from '@@/src/components/Breadcrumb'
 import styles from './index.module.less'
 
 const TabLayout = ({
@@ -19,19 +20,24 @@ const TabLayout = ({
       label: route?.title,
       key,
       children: (
-        <Routes location={path}>
-          {flattenRoute.map((item) => {
-            const { element, path: p } = item
-            return (
-              <Route
-                path={p.substring(1)}
-                key={p}
-                id={p}
-                element={<Suspense fallback={<LoadingPage />}>{element}</Suspense>}
-              />
-            )
-          })}
-        </Routes>
+        <div className={styles['route-wrap']}>
+          <Breadcrumb route={route} currentPath={path} />
+          <div className={styles['route-content']}>
+            <Routes location={path}>
+              {flattenRoute.map((item) => {
+                const { element, path: p } = item
+                return (
+                  <Route
+                    path={p.substring(1)}
+                    key={p}
+                    id={p}
+                    element={<Suspense fallback={<LoadingPage />}>{element}</Suspense>}
+                  />
+                )
+              })}
+            </Routes>
+          </div>
+        </div>
       ),
     }
   })
