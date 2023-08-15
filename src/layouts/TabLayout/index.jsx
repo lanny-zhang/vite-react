@@ -21,7 +21,7 @@ const TabLayout = ({
       key,
       children: (
         <div className={styles['route-wrap']}>
-          {!hideTab && path !== key && <Breadcrumb route={route} currentPath={path} />}
+          {!hideTab && path !== key && <Breadcrumb route={flattenRoute} currentPath={path} />}
           <div
             className={classname(styles['route-content'], {
               [styles['breadcrumn-hide']]: hideTab || path === key,

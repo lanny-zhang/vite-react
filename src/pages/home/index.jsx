@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Typography, Space } from 'antd'
 import useAuth from '@@/src/hooks/auth'
+import PageLayout from '@@/src/components/PageLayout'
 import { testRequest } from './services'
 import styles from './index.module.less'
 
@@ -18,7 +19,7 @@ const Home = () => {
   }
 
   return (
-    <div className={styles.home}>
+    <PageLayout>
       <Typography.Title level={1} style={{ margin: 0 }}>
         HELLO WORLD
       </Typography.Title>
@@ -29,7 +30,7 @@ const Home = () => {
       <Button style={{ marginLeft: 8 }} loading={auth.loading} type='primary' onClick={auth.signout}>
         SIGN OUT
       </Button>
-    </div>
+    </PageLayout>
   )
 }
 
