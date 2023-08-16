@@ -27,6 +27,7 @@ const TabLayout = ({
               [styles['breadcrumn-hide']]: hideTab || path === key,
             })}
           >
+            {/* 使用location控制routes渲染的默认行为 */}
             <Routes location={path}>
               {flattenRoute.map((item) => {
                 const { element, path: p } = item

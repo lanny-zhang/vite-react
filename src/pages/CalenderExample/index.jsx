@@ -1,5 +1,6 @@
 import React from 'react'
 import { Badge, Calendar } from 'antd'
+import PageLayout from '@@/src/components/PageLayout'
 
 const getListData = (value) => {
   let listData
@@ -96,7 +97,7 @@ const CalendarExample = () => {
     if (info.type === 'month') return monthCellRender(current)
     return info.originNode
   }
-  return <Calendar cellRender={cellRender} />
+  return <PageLayout><Calendar cellRender={cellRender} /></PageLayout>
 }
 
 export default CalendarExample

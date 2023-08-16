@@ -49,14 +49,13 @@ const SiderLayout = ({ children }) => {
   const [pageList, setPageList] = useState([])
 
   const listenLocationChangeTabState = () => {
-    const { pathname } = location
+    const { pathname, search } = location
     const currentRouteObj = flattenRoutes.find((i) => i.path === pathname) || {}
     const { path, father } = currentRouteObj
-
     // 使用最高一级路由的path当作唯一标识
     const activeKey = father?.split('_')[0] || path
 
-    const activePageObj = { ...currentRouteObj, key: activeKey }
+    const activePageObj = { ...currentRouteObj, key: activeKey, path: path + search }
     setActivePage(activePageObj)
 
     const isExistTab = pageList.some((i) => i.key === activeKey)
@@ -79,7 +78,9 @@ const SiderLayout = ({ children }) => {
 
   const handleMenuChange = ({ key, domEvent }) => {
     domEvent.stopPropagation()
-    navigate(key)
+    const existTab = pageList.find((i) => i.key === key)
+    if (existTab) navigate(existTab.path)
+    else navigate(key)
   }
 
   const handleDeletePage = (currentPages) => {
