@@ -3,9 +3,11 @@ import Home from '../pages/Home'
 import { flattenArray } from '../util/javascript'
 
 const Form = React.lazy(() => import('@pages/Form'))
+const Descriptions = React.lazy(() => import('@pages/Descriptions'))
 const Table = React.lazy(() => import('@pages/Table'))
 const Detail = React.lazy(() => import('@pages/Detail'))
 const CalenderExample = React.lazy(() => import('@pages/CalenderExample'))
+const FlowEditor = React.lazy(() => import('@pages/FlowEditor'))
 
 const routes = [
   {
@@ -17,27 +19,36 @@ const routes = [
     hideSider: true,
   },
   {
-    path: 'form',
+    path: 'basic/form',
     element: <Form />,
     title: 'Form',
   },
   {
-    path: 'table',
+    path: 'basic/table',
     element: <Table />,
     title: 'Table',
     children: [
       {
-        path: 'table/detail',
+        path: 'basic/table/detail',
         element: <Detail />,
         title: 'Detail',
       },
     ],
   },
-
   {
-    path: 'calender',
+    path: 'basic/descriptions',
+    element: <Descriptions />,
+    title: 'Descriptions',
+  },
+  {
+    path: 'basic/calender',
     element: <CalenderExample />,
     title: 'Calender',
+  },
+  {
+    path: 'complex/flow',
+    element: <FlowEditor />,
+    title: 'Flow Editor',
   },
 ]
 

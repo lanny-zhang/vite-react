@@ -6,6 +6,8 @@ const ThemeProvider = ({ children }) => {
   const { theme: contextTheme } = useContext(ctx)
   return (
     <ConfigProvider
+      // componentSize='small'
+      wave={{ disabled: true }}
       theme={{
         algorithm: contextTheme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm,
         token: {
