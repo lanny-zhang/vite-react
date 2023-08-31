@@ -1,19 +1,36 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { Table, Tooltip } from 'antd'
-import styles from './index.less'
+import styles from './index.module.less'
 
+/**
+ * @description
+ * schemaTable表格组件
+ *
+ * @argument
+ *
+ * @type {Array}
+ *  columns
+ * @type {Array}
+ *  dataSource
+ * @type {object}
+ * pagination current = 1, pageSize = 10, total = 0
+ * @type {Function}
+ *  onChange  分页、排序、筛选变化时触发 Function(pagination, filters, sorter, extra: {           currentDataSource: [] })
+ * @type {string}
+ * defaultNullValue 数据为空时默认显示的值
+ */
 const SchemaTable = ({
-  dataList = [], // 数据源 包含current pageSize total dataSource
-  tableConfig = {}, // 列配置项 包含columns(表格columns数组) tableProps(table表格选项) paginationConfig(分页选项),defaultNullValue(String-数值为空默认填值)
-  onChange = () => {}, //  分页、排序、筛选变化时触发 Function(pagination, filters, sorter, extra: { currentDataSource: [] })
+  dataSource = [], // 数据源 包含current pageSize total dataSource
+  pagination: paginationProps = {},
+  onChange = () => {},
+  columns = [],
+  defaultNullValue,
+  ...tableProps
 }) => {
   const {
-    dataSource = [], current = 1, pageSize = 10, total = 0,
-  } = dataList
-  const {
-    columns = [], tableProps = {}, paginationConfig, defaultNullValue,
-  } = tableConfig
+    current = 1, pageSize = 10, total = 0, ...otherPagenation
+  } = paginationProps
 
   const checkNullValue = (defaultValue) => {
     if (defaultNullValue === null || defaultNullValue === undefined) return defaultValue
@@ -64,7 +81,7 @@ const SchemaTable = ({
         scroll={{ x: true }}
         dataSource={dataSource}
         columns={columnsConfig}
-        pagination={pagination(paginationConfig)}
+        pagination={pagination(otherPagenation)}
         {...tableProps}
       />
     </div>

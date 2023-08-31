@@ -227,7 +227,7 @@ const SchemaForm = (props) => {
           }
           : {}
 
-      const rulesProps = type === 'input' || type === 'input-area' ? { whitespace: true } : {}
+      const rulesProps = type === 'input' || type === 'text-area' ? { whitespace: true } : {}
 
       return (
         <Col

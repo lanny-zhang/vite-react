@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { Space, Table, Tag } from 'antd'
+import { Tag } from 'antd'
 import { Link } from 'react-router-dom'
-import PageLayout from '@@/src/components/PageLayout'
+import SchemaTable from '@/components/SchemaTable'
+import PageLayout from '@/components/PageLayout'
 
 const columns = [
   {
@@ -42,6 +42,7 @@ const columns = [
     ),
   },
 ]
+
 const data = [
   {
     key: '1',
@@ -65,9 +66,10 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ]
+
 const PageTwo = () => (
   <PageLayout>
-    <Table columns={columns} dataSource={data} />
+    <SchemaTable columns={columns} dataSource={data} />
   </PageLayout>
 )
 export default PageTwo
