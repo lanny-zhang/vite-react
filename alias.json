@@ -1,6 +1,6 @@
 [
-  ["@@", "."],
   ["@", "./src"],
+  ["@@", "."],
   ["@util", "./src/util"],
   ["@components", "./src/components"],
   ["@pages", "./src/pages"],

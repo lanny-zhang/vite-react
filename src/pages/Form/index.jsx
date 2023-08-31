@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   AutoComplete, Button, Cascader, Col, Form, Input, Row, Select, Checkbox,
 } from 'antd'
-import SchemaForm from '@@/src/components/SchemaForm'
-import PageLayout from '@@/src/components/PageLayout'
+import SchemaForm from '@/components/SchemaForm'
+import PageLayout from '@/components/PageLayout'
 
 const { Option } = Select
 const residences = [

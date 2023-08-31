@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@@/*": [
-        "./*"
-      ],
       "@/*": [
         "src/*"
+      ],
+      "@@/*": [
+        "./*"
       ],
       "@components/*": [
         "src/components/*"
@@ -14,23 +14,14 @@
       "@pages/*": [
         "src/pages/*"
       ],
-      "@utils/*": [
-        "src/utils/*"
+      "@util/*": [
+        "src/util/*"
       ],
       "@constants/*": [
         "src/constants/*"
       ],
-      "@graphql/*": [
-        "src/graphql/*"
-      ],
-      "@localState/*": [
-        "src/localState/*"
-      ],
-      "@store/*": [
-        "src/store/*"
-      ],
-      "@translations/*": [
-        "src/translations/*"
+      "@hooks/*": [
+        "src/hooks/*"
       ],
       "@assets/*": [
         "src/assets/*"
