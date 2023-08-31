@@ -161,7 +161,6 @@ const SiderLayout = ({ children }) => {
         >
           <Menu
             onOpenChange={(keys) => {
-              console.log({ keys })
               setMenuOpenKeys(keys)
             }}
             mode='inline'
