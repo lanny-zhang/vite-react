@@ -15,7 +15,7 @@ const Home = () => {
   }, [])
 
   function goPage() {
-    navigate('/table')
+    navigate('/basic/general/table')
   }
 
   return (

@@ -2,13 +2,14 @@
 import React from 'react'
 import { Space, Table, Tag } from 'antd'
 import { Link } from 'react-router-dom'
+import PageLayout from '@@/src/components/PageLayout'
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <Link to={`/basic/table/detail?id=${text}`}>{text}</Link>,
+    render: (text) => <Link to={`/basic/general/table/detail?id=${text}`}>{text}</Link>,
   },
   {
     title: 'Age',
@@ -64,5 +65,9 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ]
-const PageTwo = () => <Table columns={columns} dataSource={data} />
+const PageTwo = () => (
+  <PageLayout>
+    <Table columns={columns} dataSource={data} />
+  </PageLayout>
+)
 export default PageTwo

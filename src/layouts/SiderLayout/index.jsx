@@ -16,24 +16,24 @@ const { useToken } = antdTheme
 
 const menus = [
   {
-    key: 'basic',
+    key: '/basic',
     label: 'Basic Components',
     children: [
       {
-        key: 'sub1',
+        key: '/basic/general',
         icon: <UserOutlined />,
         label: 'General',
         children: [
           {
-            key: '/basic/form',
+            key: '/basic/general/form',
             label: 'Form',
           },
           {
-            key: '/basic/table',
+            key: '/basic/general/table',
             label: 'Table',
           },
           {
-            key: '/basic/calender',
+            key: '/basic/general/calender',
             label: 'Calender',
           },
         ],
@@ -45,16 +45,16 @@ const menus = [
     ],
   },
   {
-    key: 'complex',
+    key: '/complex',
     label: 'Complex Components',
     children: [
       {
-        key: 'graphic',
+        key: '/complex/graphic',
         icon: <UserOutlined />,
         label: 'Graphic Editor',
         children: [
           {
-            key: '/complex/flow',
+            key: '/complex/graphic/flow',
             label: 'Flow Editor',
           },
         ],
@@ -74,14 +74,16 @@ const SiderLayout = ({ children }) => {
 
   const [activePage, setActivePage] = useState({})
   const [pageList, setPageList] = useState([])
-  const [selectedHeaderMenu, setSelectedHeaderMenu] = useState('basic')
+  const [menuOpenKeys, setMenuOpenKeys] = useState([])
+  const [selectedHeaderMenu, setSelectedHeaderMenu] = useState('')
   // 每一个header菜单下对应的默认显示的页面
   const [headerDefaultPage, setHeaderDefaultPage] = useState({})
 
   const handleHeaderDefaultPage = () => {
-    const { pathname } = location
-    const headerPath = pathname.split('/')[1]
-    setHeaderDefaultPage({ ...headerDefaultPage, [headerPath]: pathname })
+    const { pathname, search } = location
+    const headerPath = `/${pathname.split('/')[1]}`
+    // setMenuOpenKeys(pathname);
+    setHeaderDefaultPage({ ...headerDefaultPage, [`${headerPath}`]: pathname + search })
     setSelectedHeaderMenu(headerPath)
   }
 
@@ -158,12 +160,17 @@ const SiderLayout = ({ children }) => {
           style={{ background: colorBgContainer }}
         >
           <Menu
+            onOpenChange={(keys) => {
+              console.log({ keys })
+              setMenuOpenKeys(keys)
+            }}
             mode='inline'
+            openKeys={menuOpenKeys}
             onClick={handleMenuChange}
             selectedKeys={[activePage?.key]}
-            defaultOpenKeys={['sub1']}
+            defaultOpenKeys={['/basic/general']}
             style={{ height: '100%', borderRight: 0 }}
-            items={menus.find((i) => i.key === selectedHeaderMenu).children}
+            items={menus.find((i) => i.key === selectedHeaderMenu)?.children}
           />
         </Sider>
         {children ? (

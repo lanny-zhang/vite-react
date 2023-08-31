@@ -1,9 +1,10 @@
 [
   ["@@", "."],
   ["@", "./src"],
-  ["@utils", "./src/utils"],
+  ["@util", "./src/util"],
   ["@components", "./src/components"],
   ["@pages", "./src/pages"],
   ["@constants", "./src/constants"],
-  ["@assets", "./src/assets"]
+  ["@assets", "./src/assets"],
+  ["@hooks", "./src/hooks"]
 ]

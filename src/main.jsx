@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-// import { HashRouter as Router } from 'react-router-dom'
+// import { HashRouter as RouterProvider } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from '@/context'

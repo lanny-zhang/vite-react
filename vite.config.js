@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import reactPlugin from '@vitejs/plugin-react'
@@ -16,7 +15,10 @@ export default defineConfig(({ mode }) => {
     experimental: {
       renderBuiltUrl(filename, { hostType }) {
         if (hostType === 'html') {
-          const hostPath = path.join(env.VITE_PUBLIC_URL, filename)
+          const hostPath = env.VITE_PUBLIC_URL.endsWith('/')
+            ? env.VITE_PUBLIC_URL + filename
+            : `${env.VITE_PUBLIC_URL}/${filename}`
+
           return hostPath.startsWith('/') ? `.${hostPath}` : hostPath
         }
         return { relative: true }
@@ -46,8 +48,6 @@ export default defineConfig(({ mode }) => {
       },
       preprocessorOptions: {
         less: {
-          // 支持内联 JavaScript
-          javascriptEnabled: true,
           additionalData: "@import '@/styles/base.less';",
         },
       },

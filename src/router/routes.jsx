@@ -19,17 +19,17 @@ const routes = [
     hideSider: true,
   },
   {
-    path: 'basic/form',
+    path: 'basic/general/form',
     element: <Form />,
     title: 'Form',
   },
   {
-    path: 'basic/table',
+    path: 'basic/general/table',
     element: <Table />,
     title: 'Table',
     children: [
       {
-        path: 'basic/table/detail',
+        path: 'basic/general/table/detail',
         element: <Detail />,
         title: 'Detail',
       },
@@ -41,12 +41,12 @@ const routes = [
     title: 'Descriptions',
   },
   {
-    path: 'basic/calender',
+    path: 'basic/general/calender',
     element: <CalenderExample />,
     title: 'Calender',
   },
   {
-    path: 'complex/flow',
+    path: 'complex/graphic/flow',
     element: <FlowEditor />,
     title: 'Flow Editor',
   },
