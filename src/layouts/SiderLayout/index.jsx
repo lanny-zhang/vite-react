@@ -1,7 +1,7 @@
 import React, {
   useState, cloneElement, useEffect, useContext,
 } from 'react'
-import { InsertRowAboveOutlined, FormOutlined } from '@ant-design/icons'
+import { InsertRowAboveOutlined, FormOutlined, FileExclamationOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { isEmpty } from 'lodash'
@@ -42,6 +42,25 @@ const menus = [
           {
             key: '/basic/table/search-table',
             label: 'Search Table',
+          },
+        ],
+      },
+      {
+        key: '/basic/exception',
+        icon: <FileExclamationOutlined />,
+        label: 'Exception',
+        children: [
+          {
+            key: '/basic/exception/404',
+            label: '404',
+          },
+          {
+            key: '/basic/exception/403',
+            label: '403',
+          },
+          {
+            key: '/basic/exception/500',
+            label: '500',
           },
         ],
       },

@@ -6,6 +6,9 @@ const Form = React.lazy(() => import('@pages/Form'))
 const Table = React.lazy(() => import('@pages/Table'))
 const Detail = React.lazy(() => import('@pages/Detail'))
 const SearchTable = React.lazy(() => import('@pages/SearchTable'))
+const Error404 = React.lazy(() => import('@components/Exceptions/Error404'))
+const Error403 = React.lazy(() => import('@components/Exceptions/Error403'))
+const Error500 = React.lazy(() => import('@components/Exceptions/Error500'))
 const FlowEditor = React.lazy(() => import('@pages/FlowEditor'))
 
 const routes = [
@@ -38,6 +41,21 @@ const routes = [
     path: 'basic/table/search-table',
     element: <SearchTable />,
     title: 'Search Table',
+  },
+  {
+    path: 'basic/exception/404',
+    element: <Error404 />,
+    title: '404',
+  },
+  {
+    path: 'basic/exception/403',
+    element: <Error403 />,
+    title: '403',
+  },
+  {
+    path: 'basic/exception/500',
+    element: <Error500 />,
+    title: '500',
   },
   {
     path: 'graphic/flow-editor',

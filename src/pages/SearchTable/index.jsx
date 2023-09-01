@@ -1,6 +1,5 @@
 import React from 'react'
 import { Tag, Form } from 'antd'
-import { Link } from 'react-router-dom'
 import SchemaTable from '@/components/SchemaTable'
 import PageLayout from '@/components/PageLayout'
 
@@ -9,7 +8,6 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <Link to={`/basic/table/basic-table/detail?id=${text}`}>{text}</Link>,
   },
   {
     title: 'Age',

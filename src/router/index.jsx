@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout'
 import TabLayout from '../layouts/TabLayout'
 
 const Login = React.lazy(() => import('@@/src/pages/Login'))
-const PageError = React.lazy(() => import('./Exceptions/Error404'))
+const PageError = React.lazy(() => import('@components/Exceptions/Error404'))
 
 const router = createBrowserRouter([
   {

@@ -7,6 +7,7 @@ import routes from '@@/src/router/routes'
 import LoadingPage from '@@/src/LoadingPage'
 import { flattenArray } from '@@/src/util/javascript'
 import Breadcrumb from '@@/src/components/Breadcrumb'
+import Exception404 from '@/components/Exceptions/Error404'
 import styles from './index.module.less'
 
 const TabLayout = ({
@@ -15,9 +16,10 @@ const TabLayout = ({
   const items = pageList.map(({ path, key, hideTab }) => {
     // 找到当前路由的对应路由和子路由，并展开
     const route = routes.find((i) => `/${i.path}` === key)
-    const flattenRoute = flattenArray([route])
+    const flattenRoute = route ? flattenArray([route]) : []
+
     return {
-      label: route?.title,
+      label: route?.title || '404',
       key,
       children: (
         <div className={styles['route-wrap']}>
@@ -28,18 +30,20 @@ const TabLayout = ({
             })}
           >
             {/* 使用location控制routes渲染的默认行为 */}
-            <Routes location={path}>
-              {flattenRoute.map((item) => {
-                const { element, path: p } = item
-                return (
-                  <Route
-                    path={p.substring(1)}
-                    key={p}
-                    id={p}
-                    element={<Suspense fallback={<LoadingPage />}>{element}</Suspense>}
-                  />
-                )
-              })}
+            <Routes location={path === 'undefined' ? '/undefined' : path}>
+              {!isEmpty(flattenRoute) &&
+                flattenRoute.map((item) => {
+                  const { element, path: p } = item
+                  return (
+                    <Route
+                      path={p.substring(1)}
+                      key={p}
+                      id={p}
+                      element={<Suspense fallback={<LoadingPage />}>{element}</Suspense>}
+                    />
+                  )
+                })}
+              <Route path='*' element={<Exception404 />} />
             </Routes>
           </div>
         </div>
