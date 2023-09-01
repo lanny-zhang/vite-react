@@ -199,7 +199,7 @@ const SchemaForm = (props) => {
        *  hidden 单个组件显隐
        */
       const {
-        required = true,
+        required,
         type,
         name,
         label = name,

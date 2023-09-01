@@ -1,6 +1,11 @@
 /* eslint-disable max-len */
-import React from 'react'
-import { Table, Tooltip } from 'antd'
+import React, { useMemo } from 'react'
+import {
+  Table, Tooltip, Form, Col, Button, Grid,
+} from 'antd'
+
+import isArray from 'lodash/isArray'
+import SchemaForm from '@/components/SchemaForm'
 import styles from './index.module.less'
 
 /**
@@ -25,7 +30,13 @@ const SchemaTable = ({
   pagination: paginationProps = {},
   onChange = () => {},
   columns = [],
-  defaultNullValue,
+  defaultNullValue = '—',
+  loading,
+  form,
+  searchButton,
+  onSearch,
+  searchForm,
+  formProps,
   ...tableProps
 }) => {
   const {
@@ -75,6 +86,16 @@ const SchemaTable = ({
 
   return (
     <div className={styles.tableStyle}>
+      {searchForm ? (
+        <SearchFrom
+          loading={loading}
+          form={form}
+          searchButton={searchButton}
+          onSearch={onSearch}
+          searchForm={searchForm}
+          {...formProps}
+        />
+      ) : null}
       <Table
         onChange={onChange}
         size='middle'
@@ -84,6 +105,90 @@ const SchemaTable = ({
         pagination={pagination(otherPagenation)}
         {...tableProps}
       />
+    </div>
+  )
+}
+
+const { useBreakpoint } = Grid
+
+export function SearchFrom({
+  searchButton,
+  searchForm,
+  onSearch,
+  style,
+  form,
+  loading,
+  className,
+  ...formProps
+}) {
+  const screens = useBreakpoint()
+  const [formInstance] = Form.useForm()
+
+  const searchSpan = useMemo(() => {
+    let span = 6
+    let columnNum = 4
+    if (!screens.lg) {
+      span = 8
+      columnNum = 3
+    }
+    if (searchForm && isArray(searchForm)) {
+      return (columnNum - (searchForm.length % columnNum)) * span
+    }
+    return span
+  }, [screens, searchForm])
+
+  function handleSearch(values) {
+    onSearch(values)
+  }
+
+  return (
+    <div className={className} style={{ ...style }}>
+      <SchemaForm
+        form={form || formInstance}
+        onFinish={handleSearch}
+        labelCol={{ span: 6 }}
+        // size='small'
+        wrapperCol={{ span: 18 }}
+        row={{ gutter: { md: 4, lg: 6, xl: 12 } }}
+        col={{
+          sm: { span: 8 },
+          md: { span: 8 },
+          lg: { span: 6 },
+          xl: { span: 6 },
+        }}
+        jsonForm={searchForm}
+        {...formProps}
+      >
+        <Col span={searchSpan}>
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          >
+            {searchButton || (
+              <>
+                <Button
+                  onClick={() => {
+                    const formRef = form || formInstance
+                    formRef.resetFields()
+                    const values = formRef.getFieldsValue(true)
+                    onSearch(values)
+                  }}
+                  style={{ marginRight: 6 }}
+                  loading={loading}
+                >
+                  Reset
+                </Button>
+                <Button loading={loading} type='primary' htmlType='submit'>
+                  Search
+                </Button>
+              </>
+            )}
+          </div>
+        </Col>
+      </SchemaForm>
     </div>
   )
 }

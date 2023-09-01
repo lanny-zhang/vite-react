@@ -3,10 +3,9 @@ import Home from '../pages/Home'
 import { flattenArray } from '../util/javascript'
 
 const Form = React.lazy(() => import('@pages/Form'))
-const Descriptions = React.lazy(() => import('@pages/Descriptions'))
 const Table = React.lazy(() => import('@pages/Table'))
 const Detail = React.lazy(() => import('@pages/Detail'))
-const CalenderExample = React.lazy(() => import('@pages/CalenderExample'))
+const SearchTable = React.lazy(() => import('@pages/SearchTable'))
 const FlowEditor = React.lazy(() => import('@pages/FlowEditor'))
 
 const routes = [
@@ -19,34 +18,29 @@ const routes = [
     hideSider: true,
   },
   {
-    path: 'basic/general/form',
+    path: 'basic/form/basic-form',
     element: <Form />,
-    title: 'Form',
+    title: 'Basic Form',
   },
   {
-    path: 'basic/general/table',
+    path: 'basic/table/basic-table',
     element: <Table />,
-    title: 'Table',
+    title: 'Basic Table',
     children: [
       {
-        path: 'basic/general/table/detail',
+        path: 'basic/table/basic-table/detail',
         element: <Detail />,
         title: 'Detail',
       },
     ],
   },
   {
-    path: 'basic/descriptions',
-    element: <Descriptions />,
-    title: 'Descriptions',
+    path: 'basic/table/search-table',
+    element: <SearchTable />,
+    title: 'Search Table',
   },
   {
-    path: 'basic/general/calender',
-    element: <CalenderExample />,
-    title: 'Calender',
-  },
-  {
-    path: 'complex/graphic/flow',
+    path: 'graphic/flow-editor',
     element: <FlowEditor />,
     title: 'Flow Editor',
   },

@@ -1,7 +1,7 @@
 import React, {
   useState, cloneElement, useEffect, useContext,
 } from 'react'
-import { UserOutlined } from '@ant-design/icons'
+import { InsertRowAboveOutlined, FormOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { isEmpty } from 'lodash'
@@ -17,47 +17,44 @@ const { useToken } = antdTheme
 const menus = [
   {
     key: '/basic',
-    label: 'Basic Components',
+    label: 'Basic',
     children: [
       {
-        key: '/basic/general',
-        icon: <UserOutlined />,
-        label: 'General',
+        key: '/basic/form',
+        icon: <FormOutlined />,
+        label: 'Form',
         children: [
           {
-            key: '/basic/general/form',
-            label: 'Form',
-          },
-          {
-            key: '/basic/general/table',
-            label: 'Table',
-          },
-          {
-            key: '/basic/general/calender',
-            label: 'Calender',
+            key: '/basic/form/basic-form',
+            label: 'Basic Form',
           },
         ],
       },
       {
-        key: '/basic/descriptions',
-        label: 'Descriptions',
+        key: '/basic/table',
+        icon: <InsertRowAboveOutlined />,
+        label: 'Table',
+        children: [
+          {
+            key: '/basic/table/basic-table',
+            label: 'Basic Table',
+          },
+          {
+            key: '/basic/table/search-table',
+            label: 'Search Table',
+          },
+        ],
       },
     ],
   },
   {
-    key: '/complex',
-    label: 'Complex Components',
+    key: '/graphic',
+    label: 'Graphic Editor',
     children: [
       {
-        key: '/complex/graphic',
-        icon: <UserOutlined />,
-        label: 'Graphic Editor',
-        children: [
-          {
-            key: '/complex/graphic/flow',
-            label: 'Flow Editor',
-          },
-        ],
+        key: '/graphic/flow-editor',
+        icon: <InsertRowAboveOutlined />,
+        label: 'Flow Editor',
       },
     ],
   },
