@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 export function flattenArray(arr = [], parent = '') {
   let flattenedArray = []
 
@@ -14,4 +15,20 @@ export function flattenArray(arr = [], parent = '') {
   }
 
   return flattenedArray
+}
+
+export function getRandomElements(array, count) {
+  const shuffled = array.slice() // 复制数组
+  let randomElements = []
+
+  // Fisher-Yates 洗牌算法
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+
+  // 选择指定数量的元素
+  randomElements = shuffled.slice(0, count)
+
+  return randomElements
 }

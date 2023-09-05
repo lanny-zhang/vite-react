@@ -1,17 +1,17 @@
-import React, {
-  useState, cloneElement, useEffect, useContext,
-} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { InsertRowAboveOutlined, FormOutlined, FileExclamationOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme as antdTheme } from 'antd'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { isEmpty } from 'lodash'
 import classname from 'classname'
 import { ctx } from '@/context'
 import { flattenRoutes } from '@@/src/router/routes'
+import BasicContent from './components/BasicContent'
+import TabContent from './components/TabContent'
 import Header from '../Header'
 import styles from './index.module.less'
 
-const { Content, Sider } = Layout
+const { Sider } = Layout
 const { useToken } = antdTheme
 
 const menus = [
@@ -79,7 +79,7 @@ const menus = [
   },
 ]
 
-const SiderLayout = ({ children }) => {
+const SiderLayout = ({ mode }) => {
   const { theme } = useContext(ctx)
   const {
     token: { colorBgContainer },
@@ -133,17 +133,20 @@ const SiderLayout = ({ children }) => {
 
   useEffect(() => {
     // tab页列表的维护和显示
-    maintainTabState()
+    mode === 'tab' && maintainTabState()
     // 切换header时默认显示页面的处理
     handleHeaderDefaultPage()
   }, [location])
 
-  const handleMenuChange = ({ key, domEvent }) => {
-    domEvent.stopPropagation()
-
-    const existTab = pageList.find((i) => i.key === key)
-    if (existTab) navigate(existTab.path)
-    else navigate(key)
+  const handleMenuChange = ({ key }) => {
+    if (mode === 'tab') {
+      const existTab = pageList.find((i) => i.key === key)
+      if (existTab) navigate(existTab.path)
+      else navigate(key)
+    } else {
+      navigate(key)
+      setActivePage({ key })
+    }
   }
 
   const handleDeletePage = (currentPages) => {
@@ -188,27 +191,18 @@ const SiderLayout = ({ children }) => {
             items={menus.find((i) => i.key === selectedHeaderMenu)?.children}
           />
         </Sider>
-        {children ? (
-          cloneElement(children, {
-            pageList,
-            activePage,
-            onDeletePage: handleDeletePage,
-            onChange(tab) {
+        {mode === 'tab' ? (
+          <TabContent
+            pageList={pageList}
+            activePage={activePage}
+            onDeletePage={handleDeletePage}
+            onChange={(tab) => {
               setActivePage(tab)
               navigate(tab.path)
-            },
-          })
+            }}
+          />
         ) : (
-          <Layout className={styles['siderlayout-content-wrap']}>
-            <Content
-              className={styles['siderlayout-content']}
-              style={{
-                background: colorBgContainer,
-              }}
-            >
-              <Outlet />
-            </Content>
-          </Layout>
+          <BasicContent />
         )}
       </Layout>
     </Layout>

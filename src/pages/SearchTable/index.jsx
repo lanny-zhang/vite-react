@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Tag, Form } from 'antd'
 import SchemaTable from '@/components/SchemaTable'
 import PageLayout from '@/components/PageLayout'
+import { getRandomElements } from '@/util/javascript'
 
 const columns = [
   {
@@ -56,36 +57,51 @@ const columns = [
   },
 ]
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+const data = []
+const tagsList = ['nice', 'developer', 'cool', 'teacher']
+const names = [
+  'John',
+  'Jane',
+  'Michael',
+  'Emily',
+  'David',
+  'Olivia',
+  'Daniel',
+  'Sophia',
+  'Matthew',
+  'Isabella',
 ]
+
+// eslint-disable-next-line no-plusplus
+for (let index = 0; index < 50; index++) {
+  data.push({
+    key: index,
+    name: getRandomElements(names, 1)[0],
+    age: Math.floor(Math.random() * 100) + 1,
+    address: `New York No. ${index} Lake Park`,
+    tags: getRandomElements(tagsList, 2),
+  })
+}
 
 const SearchTable = () => {
   const [form] = Form.useForm()
+  const [dataSource, setDataSource] = useState(data)
+  const [pagenation, setPagenation] = useState({
+    current: 1,
+    total: data.length,
+  })
   return (
     <PageLayout>
       <SchemaTable
         form={form}
+        pagination={pagenation}
+        onChange={({ current, pageSize }) => {
+          setPagenation({
+            ...pagenation,
+            current,
+            pageSize,
+          })
+        }}
         onSearch={(values) => {
           console.log(values)
         }}
@@ -108,14 +124,14 @@ const SearchTable = () => {
             label: 'Tag',
             type: 'select',
             name: 'tag',
-            options: [
-              { label: 'Nice', value: 'Nice' },
-              { label: 'Loser', value: 'Loser' },
-            ],
+            options: tagsList.map((i) => {
+              const v = i.toLocaleUpperCase()
+              return { label: v, value: i }
+            }),
           },
         ]}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
       />
     </PageLayout>
   )
