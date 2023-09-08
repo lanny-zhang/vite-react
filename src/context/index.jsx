@@ -1,7 +1,7 @@
 import React, { createContext, useState, useMemo } from 'react'
 
 export const ctx = createContext({
-  theme: 'light',
+  theme: localStorage.getItem('theme') || 'light',
   setTheme: () => false,
   userInfo: {},
   setUserInfo: () => false,
@@ -9,9 +9,14 @@ export const ctx = createContext({
 })
 
 export function Provider({ children }) {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
   const [userInfo, setUserInfo] = useState({})
   const [isLogin, setIsLogin] = useState(false)
+
+  const handleTheme = (e) => {
+    setTheme(e)
+    localStorage.setItem('theme', e)
+  }
 
   const value = useMemo(() => {
     return {
@@ -20,7 +25,7 @@ export function Provider({ children }) {
       isLogin,
       setIsLogin,
       setUserInfo,
-      setTheme,
+      setTheme: handleTheme,
     }
   }, [theme, isLogin, userInfo])
 

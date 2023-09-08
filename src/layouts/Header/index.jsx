@@ -1,33 +1,41 @@
-import React, { useContext } from 'react'
-import { SkinOutlined } from '@ant-design/icons'
+import React, { useContext, useState } from 'react'
+import { SettingOutlined } from '@ant-design/icons'
 import {
-  Layout, Menu, theme as antdTheme, Typography,
+  Layout, Menu, Typography, Drawer, Form,
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { ctx } from '@/context'
+import { RadioField } from '@/components/FormFields'
 import styles from './index.module.less'
-
-const { useToken } = antdTheme
 
 const Header = ({ onChange, menus, selectedKey }) => {
   const navigate = useNavigate()
   const { setTheme, theme } = useContext(ctx)
-  const {
-    token: { colorBgContainer },
-  } = useToken()
+
+  const [open, setOpen] = useState(false)
 
   const nav = menus.map((i) => {
     const { children, ...reset } = i
     return reset
   })
 
-  function handleSwitchTheme() {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
+  function handleSwitchTheme(e) {
+    setTheme(e.target.value)
   }
+
+  const showDrawer = () => {
+    setOpen(true)
+  }
+
+  const onClose = () => {
+    setOpen(false)
+  }
+
+  const handleLayout = (e) => {
+    localStorage.setItem('layout', e.target.value)
+    window.location.reload()
+  }
+
   return (
     <Layout.Header className={styles.header}>
       <div className={styles['header-logo']}>
@@ -51,8 +59,37 @@ const Header = ({ onChange, menus, selectedKey }) => {
         items={nav}
       />
       <div className={styles['header-right']}>
-        <SkinOutlined onClick={handleSwitchTheme} style={{ color: '#999', fontSize: 18 }} />
+        <SettingOutlined onClick={showDrawer} style={{ color: '#999', fontSize: 20 }} />
       </div>
+      <Drawer closable={false} title='Setting' placement='right' onClose={onClose} open={open}>
+        <Form
+          initialValues={{ theme, layout: localStorage.getItem('layout') || 'tab' }}
+          layout='vertical'
+        >
+          <RadioField
+            name='theme'
+            label='Theme'
+            type='button'
+            onChange={handleSwitchTheme}
+            className={styles['radio-field']}
+            options={[
+              { value: 'light', label: 'Light' },
+              { value: 'dark', label: 'Dark' },
+            ]}
+          />
+          <RadioField
+            name='layout'
+            label='Layout'
+            type='button'
+            onChange={handleLayout}
+            className={styles['radio-field']}
+            options={[
+              { value: 'tab', label: 'Tab' },
+              { value: 'basic', label: 'Basic' },
+            ]}
+          />
+        </Form>
+      </Drawer>
     </Layout.Header>
   )
 }

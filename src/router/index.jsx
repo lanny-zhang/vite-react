@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     path: '/*',
     element: (
       <RequireAuth>
-        <SiderLayout mode='tab' />
+        <SiderLayout mode={localStorage.getItem('layout') || 'tab'} />
       </RequireAuth>
     ),
     errorElement: <PageError />,
