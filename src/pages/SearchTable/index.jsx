@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Tag, Form } from 'antd'
-import SchemaTable from '@/components/SchemaTable'
+import SchemaTable from '@/components/Table'
 import PageLayout from '@/components/PageLayout'
 import { getRandomElements } from '@/util/javascript'
 

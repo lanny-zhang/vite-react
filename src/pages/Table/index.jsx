@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tag } from 'antd'
 import { Link } from 'react-router-dom'
-import SchemaTable from '@/components/SchemaTable'
+import SchemaTable from '@/components/Table'
 import PageLayout from '@/components/PageLayout'
 
 const columns = [
