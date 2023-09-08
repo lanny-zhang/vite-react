@@ -1,9 +1,8 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import SiderLayout from '../layouts/SiderLayout'
+import BaseLayout from '@/layouts/BaseLayout'
+import SiderLayout from '@/layouts/SiderLayout'
 import RequireAuth from './RequireAuth'
-import BaseLayout from '../layouts/BaseLayout'
-import TabLayout from '../layouts/SiderLayout/components/TabContent'
 
 const Login = React.lazy(() => import('@@/src/pages/Login'))
 const PageError = React.lazy(() => import('@components/Exceptions/Error404'))
