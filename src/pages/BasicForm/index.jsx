@@ -9,6 +9,7 @@ import {
   TextAreaField,
   DatePickerField,
   Field,
+  RadioField,
 } from '@/components/FormFields'
 
 const BasicForm = () => {
@@ -33,12 +34,26 @@ const BasicForm = () => {
           maxWidth: 600,
         }}
       >
-        <InputField required name='input' label='Input' />
-        <SelectField name='select' label='Select' />
-        <RangePickerField name='range' label='Range' />
-        <NumberField name='number' label='Number' />
-        <TextAreaField name='textarea' label='TextArea' />
-        <DatePickerField name='date' label='Date' fieldProps={{ style: { width: 200 } }} />
+        <InputField required name='input' label='Input Field' />
+        <SelectField tooltip='This is a tooltip' name='select' label='Select Field' />
+        <RangePickerField name='range' label='Range Field' />
+        <DatePickerField name='date' label='Date Field' fieldProps={{ style: { width: 200 } }} />
+        <NumberField name='number' label='Number Field' />
+        <TextAreaField name='textarea' label='TextArea Field' />
+        <RadioField
+          name='radio'
+          label='Radio Field'
+          options={[
+            {
+              label: 'item 1',
+              value: '1',
+            },
+            {
+              label: 'item 2',
+              value: '2',
+            },
+          ]}
+        />
 
         <Field
           wrapperCol={{

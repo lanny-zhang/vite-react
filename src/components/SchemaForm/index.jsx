@@ -2,10 +2,12 @@
 import React from 'react'
 import classNames from 'classname'
 import {
-  Col, Input, InputNumber, Row, Select, DatePicker, Form, Switch, Checkbox,
+  Col, Input, InputNumber, Row, DatePicker, Form, Switch, Checkbox,
 } from 'antd'
 import Number from '@/components/InputNumber'
 import { Field } from '../FormFields'
+import { Radio } from '../FormFields/RadioField'
+import { Select } from '../FormFields/SelectField'
 import styles from './index.module.less'
 
 const SchemaForm = (props) => {
@@ -60,7 +62,6 @@ const SchemaForm = (props) => {
           <Input.TextArea
             disabled={disabled}
             placeholder={`Please input ${label}`}
-            autoSize
             showCount
             rows={4}
             allowClear
@@ -138,42 +139,20 @@ const SchemaForm = (props) => {
         )
       case 'checkbox':
         return <Checkbox />
+      case 'radio':
+        return <Radio options={options} />
       case 'select': {
-        // 选项组件 需要搭配childItem使用,disabledKeys禁用选项列表
-        let selectItem = options
-        let checkIsObject = false
-        if (!(options instanceof Array) && options instanceof Object) checkIsObject = true
-        if (checkIsObject) selectItem = options.item || []
-        const disableCheck = (list = [], value) => list.some((key) => key === value)
         return (
           <Select
             disabled={disabled}
             placeholder={`Please select ${label}`}
             allowClear
             autoComplete='off'
+            options={options}
+            disabledKeys={disabledKeys}
             {...componentProps}
             className={groupClassName}
-          >
-            {selectItem &&
-              selectItem.length > 0 &&
-              selectItem.map((items, index) => {
-                // eslint-disable-next-line no-shadow
-                const { label, value } = items
-                const keyValue = `${index}`
-                return (
-                  <Select.Option
-                    disabled={disableCheck(
-                      disabledKeys,
-                      checkIsObject ? items[options.value || 'value'] : value,
-                    )}
-                    key={keyValue}
-                    value={checkIsObject ? items[options.value || 'value'] : value}
-                  >
-                    {checkIsObject ? items[options.label || 'label'] : label}
-                  </Select.Option>
-                )
-              })}
-          </Select>
+          />
         )
       }
       default:

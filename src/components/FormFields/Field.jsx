@@ -12,6 +12,7 @@ const Field = (props) => {
     labelCol,
     wrapperCol,
     children,
+    ...reset
   } = props
 
   return (
@@ -23,6 +24,7 @@ const Field = (props) => {
       required={!!required}
       initialValue={initialValue}
       rules={[{ required: !!required, message, ...rules }]}
+      {...reset}
     >
       {children}
     </Form.Item>
