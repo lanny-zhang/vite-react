@@ -5,6 +5,7 @@ import {
   Col, Input, InputNumber, Row, Select, DatePicker, Form, Switch, Checkbox,
 } from 'antd'
 import Number from '@/components/InputNumber'
+import { Field } from '../FormFields'
 import styles from './index.module.less'
 
 const SchemaForm = (props) => {
@@ -59,9 +60,9 @@ const SchemaForm = (props) => {
           <Input.TextArea
             disabled={disabled}
             placeholder={`Please input ${label}`}
-            style={{ height: '50px' }}
             autoSize
             showCount
+            rows={4}
             allowClear
             {...componentProps}
             className={groupClassName}
@@ -237,7 +238,7 @@ const SchemaForm = (props) => {
           className={classNames(className, hidden ? styles.hidden : null)}
           style={style}
         >
-          <Form.Item
+          <Field
             name={name}
             className={styles.schemaForms}
             label={label}
@@ -257,7 +258,7 @@ const SchemaForm = (props) => {
               name,
               label,
             })}
-          </Form.Item>
+          </Field>
         </Col>
       )
     })

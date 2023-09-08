@@ -3,6 +3,7 @@ import Home from '../pages/Home'
 import { flattenArray } from '../util/javascript'
 
 const Form = React.lazy(() => import('@pages/Form'))
+const BasicForm = React.lazy(() => import('@pages/BasicForm'))
 const Table = React.lazy(() => import('@pages/Table'))
 const Detail = React.lazy(() => import('@pages/Detail'))
 const SearchTable = React.lazy(() => import('@pages/SearchTable'))
@@ -21,8 +22,13 @@ const routes = [
     hideSider: true,
   },
   {
-    path: 'basic/form/basic-form',
+    path: 'basic/form/schema-form',
     element: <Form />,
+    title: 'Schema Form',
+  },
+  {
+    path: 'basic/form/basic-form',
+    element: <BasicForm />,
     title: 'Basic Form',
   },
   {

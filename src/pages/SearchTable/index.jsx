@@ -9,36 +9,43 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    width: 200,
   },
   {
     title: 'Age',
     dataIndex: 'age',
     key: 'age',
+    width: 80,
   },
   {
     title: 'Column1',
     dataIndex: 'column1',
     key: 'column1',
+    width: 100,
   },
   {
     title: 'Column2',
     dataIndex: 'column2',
     key: 'column2',
+    width: 100,
   },
   {
     title: 'Column3',
     dataIndex: 'column3',
     key: 'column3',
+    width: 100,
   },
   {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+    width: 300,
   },
   {
     title: 'Tags',
     key: 'tags',
     dataIndex: 'tags',
+    width: 200,
     render: (_, { tags }) => (
       <>
         {tags.map((tag) => {
@@ -90,10 +97,12 @@ const SearchTable = () => {
     current: 1,
     total: data.length,
   })
+
   return (
     <PageLayout>
       <SchemaTable
         form={form}
+        scroll={{ y: 'calc(100vh - 316px)' }}
         pagination={pagenation}
         onChange={({ current, pageSize }) => {
           setPagenation({

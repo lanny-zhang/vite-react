@@ -15,7 +15,7 @@ export default function InputNumber(props) {
   return (
     <Input
       onChange={handleChange}
-      autocomplete='new-password'
+      // autocomplete='new-password'
       allowClear
       value={value}
       {...otherProps}

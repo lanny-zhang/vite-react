@@ -28,6 +28,10 @@ const menus = [
             key: '/basic/form/basic-form',
             label: 'Basic Form',
           },
+          {
+            key: '/basic/form/schema-form',
+            label: 'Schema Form',
+          },
         ],
       },
       {
