@@ -107,6 +107,7 @@ const PageOne = () => {
       type: 'input',
       name: 'email',
       label: 'E-mail',
+      required: true,
       rules: [
         {
           type: 'email',
@@ -122,12 +123,7 @@ const PageOne = () => {
       type: 'password',
       name: 'password',
       label: 'Password',
-      rules: [
-        {
-          required: true,
-          message: 'Please input your password!',
-        },
-      ],
+      required: true,
       hasFeedback: true,
     },
     {
@@ -158,16 +154,11 @@ const PageOne = () => {
       tooltip: 'What do you want others to call you?',
     },
     {
+      type: 'cascader',
       name: 'residence',
       label: 'Habitual Residence',
-      component: <Cascader options={residences} />,
-      rules: [
-        {
-          type: 'array',
-          required: true,
-          message: 'Please select your habitual residence!',
-        },
-      ],
+      options: residences,
+      required: true,
     },
     {
       type: 'input',

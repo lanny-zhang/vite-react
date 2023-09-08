@@ -4,11 +4,16 @@ import Field from './Field'
 
 const InputField = (props) => {
   const {
-    label, fieldProps, readOnly, ...reset
+    label, fieldProps, readOnly, required, message, ...reset
   } = props
 
   return (
-    <Field label={label} readOnly={readOnly} {...reset}>
+    <Field
+      label={label}
+      readOnly={readOnly}
+      rules={[{ required: !!required, message, whitespace: true }]}
+      {...reset}
+    >
       <Input allowClear placeholder={`Please input ${label}`} {...fieldProps} />
     </Field>
   )

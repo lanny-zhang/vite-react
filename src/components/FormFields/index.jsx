@@ -6,6 +6,7 @@ import DatePickerField from './DatePickerField'
 import SelectField from './SelectField'
 import TextAreaField from './TextAreaField'
 import RadioField from './RadioField'
+import CascaderField from './CascaderField'
 
 export {
   Field,
@@ -16,4 +17,5 @@ export {
   SelectField,
   TextAreaField,
   RadioField,
+  CascaderField,
 }

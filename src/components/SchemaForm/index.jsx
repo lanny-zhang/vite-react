@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classname'
 import {
-  Col, Input, InputNumber, Row, DatePicker, Form, Switch, Checkbox,
+  Col, Input, InputNumber, Row, DatePicker, Form, Switch, Checkbox, Cascader,
 } from 'antd'
 import Number from '@/components/InputNumber'
 import { Field } from '../FormFields'
@@ -141,6 +141,18 @@ const SchemaForm = (props) => {
         return <Checkbox />
       case 'radio':
         return <Radio options={options} />
+      case 'cascader':
+        return (
+          <Cascader
+            disabled={disabled}
+            placeholder={`Please select ${label}`}
+            allowClear
+            autoComplete='off'
+            options={options}
+            className={groupClassName}
+            {...componentProps}
+          />
+        )
       case 'select': {
         return (
           <Select
@@ -158,6 +170,12 @@ const SchemaForm = (props) => {
       default:
         return component
     }
+  }
+
+  const specialRules = {
+    input: { whitespace: true },
+    'text-area': { whitespace: true },
+    cascader: { type: 'array' },
   }
 
   const renderFormData = () => {
@@ -207,7 +225,7 @@ const SchemaForm = (props) => {
           }
           : {}
 
-      const rulesProps = type === 'input' || type === 'text-area' ? { whitespace: true } : {}
+      const rulesProps = specialRules[type] || {}
 
       return (
         <Col

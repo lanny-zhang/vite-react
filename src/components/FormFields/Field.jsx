@@ -5,7 +5,6 @@ const Field = (props) => {
   const {
     name,
     label,
-    rules,
     required,
     message = `Please enter ${label}`,
     initialValue,
@@ -23,7 +22,7 @@ const Field = (props) => {
       wrapperCol={wrapperCol}
       required={!!required}
       initialValue={initialValue}
-      rules={[{ required: !!required, message, ...rules }]}
+      rules={[{ required: !!required, message }]}
       {...reset}
     >
       {children}
