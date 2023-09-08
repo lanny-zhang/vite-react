@@ -253,7 +253,6 @@ const PageOne = () => {
         style={{
           maxWidth: 600,
         }}
-        scrollToFirstError
         jsonForm={jsonForm}
       >
         <Col span={24}>

@@ -59,7 +59,13 @@ const Header = ({ onChange, menus, selectedKey }) => {
         items={nav}
       />
       <div className={styles['header-right']}>
-        <SettingOutlined onClick={showDrawer} style={{ color: '#999', fontSize: 20 }} />
+        <SettingOutlined
+          onClick={showDrawer}
+          style={{
+            color: theme === 'light' ? 'rgb(47, 58, 69)' : 'rgb(170, 180, 190)',
+            fontSize: 18,
+          }}
+        />
       </div>
       <Drawer closable={false} title='Setting' placement='right' onClose={onClose} open={open}>
         <Form

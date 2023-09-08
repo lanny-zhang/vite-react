@@ -11,6 +11,7 @@ const InputField = (props) => {
     <Field
       label={label}
       readOnly={readOnly}
+      required={required}
       rules={[{ required: !!required, message, whitespace: true }]}
       {...reset}
     >

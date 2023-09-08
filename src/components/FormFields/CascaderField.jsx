@@ -11,6 +11,7 @@ const CascaderField = (props) => {
     <Field
       label={label}
       readOnly={readOnly}
+      required={required}
       rules={[
         {
           type: 'array',

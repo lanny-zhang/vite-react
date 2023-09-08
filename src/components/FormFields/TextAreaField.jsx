@@ -12,6 +12,7 @@ const TextAreaField = (props) => {
       <Input.TextArea
         placeholder={`Please input ${label}`}
         showCount
+        required={required}
         rules={[{ required: !!required, message, whitespace: true }]}
         rows={4}
         allowClear
