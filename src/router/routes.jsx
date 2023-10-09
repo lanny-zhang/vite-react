@@ -12,6 +12,19 @@ const Error403 = React.lazy(() => import('@components/Exceptions/Error403'))
 const Error500 = React.lazy(() => import('@components/Exceptions/Error500'))
 const FlowEditor = React.lazy(() => import('@pages/FlowEditor'))
 
+/**
+ * @argument
+ * @type {String}
+ * path
+ * @type {String}
+ * title  it is tab's title
+ * @type {Boolean}
+ * hideTab--default value is false, if true, the tab will hidden
+ * @type {Boolean}
+ * hideSider--default Value is false, if true, the sider will hidden
+ * @type {Array}
+ * children--子路由，在tab模式下，路由名字需要遵守层级规则，例如一级路由为table，子路由则需要为table/children
+ */
 const routes = [
   {
     path: '',

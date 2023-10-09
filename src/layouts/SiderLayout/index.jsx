@@ -190,7 +190,7 @@ const SiderLayout = ({ mode }) => {
             openKeys={menuOpenKeys}
             onClick={handleMenuChange}
             selectedKeys={[activePage?.key]}
-            defaultOpenKeys={['/basic/general']}
+            // defaultOpenKeys={['/basic/general']}
             style={{ height: '100%', borderRight: 0 }}
             items={menus.find((i) => i.key === selectedHeaderMenu)?.children}
           />

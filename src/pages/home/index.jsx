@@ -27,12 +27,6 @@ const Home = () => {
       <Button type='primary' onClick={goPage}>
         LINK TO TABLE PAGE
       </Button>
-      <Button style={{ marginLeft: 8 }} loading={auth.loading} type='primary' onClick={auth.signout}>
-        SIGN OUT
-      </Button>
-      <Button style={{ marginLeft: 8 }} loading={auth.loading} type='primary'>
-        TEST
-      </Button>
     </PageLayout>
   )
 }

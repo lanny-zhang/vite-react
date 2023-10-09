@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { SettingOutlined } from '@ant-design/icons'
 import {
-  Layout, Menu, Typography, Drawer, Form,
+  Layout, Menu, Typography, Drawer, Form, Avatar, Dropdown,
 } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import useAuth from '@@/src/hooks/auth'
 import { ctx } from '@/context'
 import { RadioField } from '@/components/FormFields'
 import styles from './index.module.less'
@@ -11,8 +11,31 @@ import styles from './index.module.less'
 const Header = ({ onChange, menus, selectedKey }) => {
   const navigate = useNavigate()
   const { setTheme, theme } = useContext(ctx)
+  const auth = useAuth()
 
   const [open, setOpen] = useState(false)
+
+  const items = [
+    {
+      key: '0',
+      label: 'Admin',
+      disabled: true,
+    },
+    {
+      key: '2',
+      label: 'SETTING',
+      onClick() {
+        showDrawer()
+      },
+    },
+    {
+      key: '1',
+      label: 'SIGN OUT',
+      onClick() {
+        auth.signout()
+      },
+    },
+  ]
 
   const nav = menus.map((i) => {
     const { children, ...reset } = i
@@ -59,13 +82,9 @@ const Header = ({ onChange, menus, selectedKey }) => {
         items={nav}
       />
       <div className={styles['header-right']}>
-        <SettingOutlined
-          onClick={showDrawer}
-          style={{
-            color: theme === 'light' ? 'rgb(47, 58, 69)' : 'rgb(170, 180, 190)',
-            fontSize: 18,
-          }}
-        />
+        <Dropdown arrow={false} menu={{ items }} placement='bottom'>
+          <Avatar style={{ verticalAlign: 'middle' }}>a</Avatar>
+        </Dropdown>
       </div>
       <Drawer closable={false} title='Setting' placement='right' onClose={onClose} open={open}>
         <Form
